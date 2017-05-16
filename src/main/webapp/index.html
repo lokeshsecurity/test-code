@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en-us" data-ng-app="gbs-app">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+
+<title> نظام مجالس الإدارة واللجان الحكومية </title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- Basic Styles -->
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/font-awesome.min.css">
+	
+
+<!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/smartadmin-production.min.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/smartadmin-skins.min.css">
+
+<!-- SmartAdmin RTL Support is under construction-->
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/smartadmin-rtl.min.css">
+
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/select2_angularJs.css">
+
+<!-- We recommend you use "your_style.css" to override SmartAdmin
+		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
+
+<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/demo.min.css">
+
+<!-- Angular Related CSS -->
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/ng.min.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/toaster.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/jquery.stickynotes.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/angularjs-block-ui.css">
+
+<link rel="stylesheet" type="text/css" media="screen"	href="css/ui-grid.min.css">
+<link rel="stylesheet" type="text/css" media="screen"	href="css/ui-grid.woff">
+	
+<!-- 
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/datatables.bootstrap.min.css">
+ -->
+<!-- FAVICONS -->
+<link rel="shortcut icon" href="img/gbs-favicon.png" type="image/x-icon">
+<link rel="icon" href="img/gbs-favicon.png" type="image/x-icon">
+
+<!-- GOOGLE FONT -->
+<!-- <link rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700"> -->
+
+<!-- Specifying a Webpage Icon for Web Clip
+			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+<link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="76x76"
+	href="img/splash/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="120x120"
+	href="img/splash/touch-icon-iphone-retina.png">
+<link rel="apple-touch-icon" sizes="152x152"
+	href="img/splash/touch-icon-ipad-retina.png">
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/ar-fonts.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/custom-css.css">
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/dropzone.css">
+	
+<link rel="stylesheet" type="text/css" media="screen"
+	href="css/lazy-image-style.css">
+	
+	<link rel="stylesheet" type="text/css" media="screen"
+	href="css/cio-lookup.css">
+	
+	
+	<link rel="stylesheet" type="text/css" media="screen"
+	href="css/sweet-alert.css">
+	
+	<link rel="stylesheet" type="text/css" href="css/jquery.calendars.picker.css">
+
+<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<!-- Startup image for web apps -->
+<link rel="apple-touch-startup-image"
+	href="img/splash/ipad-landscape.png"
+	media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+<link rel="apple-touch-startup-image"
+	href="img/splash/ipad-portrait.png"
+	media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+<link rel="apple-touch-startup-image" href="img/splash/iphone.png"
+	media="screen and (max-device-width: 320px)">
+
+</head>
+<body class=" minified" data-ng-controller="SmartAppController">
+	<!-- POSSIBLE CLASSES: minified, fixed-ribbon, fixed-header, fixed-width, top-menu
+			 You can also add different skin classes such as "smart-skin-0", "smart-skin-1" etc...-->
+
+	<!-- HEADER -->
+	<header id="header" data-ng-include="'includes/header.html'"></header>
+	<!-- END HEADER -->
+
+	<!-- Left panel : Navigation area -->
+	<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+	<aside id="left-panel" class="arabic-font">
+		<span data-ng-include="'includes/left-panel.html'"></span>
+	</aside>
+	<!-- END NAVIGATION -->
+
+	<!-- MAIN PANEL -->
+	<div id="main" role="main" class="arabic-font" >
+	
+		<!-- RIBBON -->
+<!-- 		<div id="ribbon" data-ng-include="'includes/ribbon.html'"  data-ribbon=""></div> -->
+		<!-- END RIBBON -->
+		
+		
+		<!-- RIBBON -->
+		<div id="custom-ribbon" class="custom-ribbon"  data-ribbon="">
+			<div style="background-color: #474544" ncy-breadcrumb></div>
+		</div>
+		<!-- END RIBBON -->
+
+
+		<!-- MAIN CONTENT -->
+		<div id="content" ui-view class="view-animate"></div>
+		<!-- data-ng-view="" -->
+		<!-- END MAIN CONTENT -->
+
+	</div>
+	<!-- END MAIN PANEL -->
+
+	<!-- PAGE FOOTER -->
+	<div class="page-footer">
+		<span data-ng-include="'includes/footer.html'"></span>
+	</div>
+	<!-- END FOOTER -->
+
+	<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+		Note: These tiles are completely responsive,
+		you can add as many as you like
+		-->
+	<div id="shortcut">
+		<span data-ng-include="'includes/shortcut.html'"></span>
+	</div>
+	<!-- END SHORTCUT AREA -->
+    	
+
+<!--================================================== -->
+
+	<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)
+		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>-->
+
+	<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+	 <script
+		src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> 
+	<script>
+		if (!window.jQuery) {
+			document
+					.write('<script src="js/libs/jquery-2.0.2.min.js"><\/script>');
+		}
+	</script>
+
+<!-- 	<script
+		src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script> -->
+	<script>
+		if (!window.jQuery.ui) {
+			document
+					.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+		}
+	</script>
+
+	<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+	<!-- <script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
+
+	<!-- BOOTSTRAP JS -->
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	
+
+	<!-- CUSTOM NOTIFICATION -->
+	<script src="js/notification/SmartNotification.min.js"></script>
+
+	<!-- JARVIS WIDGETS -->
+	<script src="js/smartwidgets/jarvis.widget.min.js"></script>
+
+	<!-- EASY PIE CHARTS -->
+<!-- 	<script src="js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script> -->
+
+	<!-- SPARKLINES -->
+	<!-- <script src="js/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+	JQUERY VALIDATE
+	<script src="js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+	JQUERY MASKED INPUT
+	<script src="js/plugin/masked-input/jquery.maskedinput.min.js"></script> -->
+
+	<!-- JQUERY SELECT2 INPUT -->
+	<!-- <script src="js/plugin/select2/select2.js"></script> -->
+
+
+	<!-- JQUERY UI + Bootstrap Slider -->
+<!-- 	<script src="js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+	browser msie issue fix
+	<script src="js/plugin/msie-fix/jquery.mb.browser.min.js"></script> -->
+
+	<!-- FastClick: For mobile devices: you can disable this in app.js -->
+	<script src="js/plugin/fastclick/fastclick.min.js"></script>
+	
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+	
+	<script src="js/plugin/sticky-notes/jquery.stickynotes.js"></script>
+	<script src="js/plugin/dropzone/dropzone.min.js"></script>
+	<script src="js/plugin/fullcalendar/jquery.plugin.js"></script> 
+	<script src="js/plugin/fullcalendar/jquery.calendars.js"></script>
+	<script src="js/plugin/fullcalendar/jquery.calendars.plus.js"></script>
+	<script src="js/plugin/fullcalendar/jquery.calendars.islamic.js"></script> 
+	<script src="js/plugin/fullcalendar/jquery.calendars.islamic-ar.js"></script>
+	<script src="js/plugin/fullcalendar/jquery.calendars.picker.js"></script>
+	<script src="js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script>
+	<script src="js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>	
+	<script src="js/plugin/cookie/cookie.js"></script>
+	<script src="js/indexed-db/Dexie.js"></script>
+	<script src="js/moment.js"></script>
+	
+
+	<!-- AngularJS -->
+	<script src="js/libs/angular/angular.js"></script>
+	<script src="js/libs/angular/angular-route.js"></script>
+	<script src="js/libs/angular/angularjs-resource.js"></script>
+	<script src="js/libs/angular/angular-ui-router.js"></script>
+	<script src="js/libs/angular/angular-animate.js"></script>
+	<script src="js/libs/angular/angular-modal-service.js"></script>
+	<script src="js/libs/angular/ui-bootstrap-custom-tpls-0.11.0.js"></script>
+	<script src="js/libs/angular/angular-breadcrumb/angular-breadcrumb.js"></script>
+	<script src="js/libs/angular/lazy-image.js"></script>
+	<script src="js/libs/angular/angular-base64-upload/angular-base64-upload.js"></script>
+
+	<!-- angular data table -->
+	<script src="js/angular-datatable/angular-datatables.min.js"></script>
+	<script src="js/ui-grid/ui-grid.min.js"></script>
+	
+	<script src="js/notification/toaster.js"></script>
+	<script src="js/libs/angular/angular-sweet-alert/sweet-alert.js"></script>
+	<script src="js/libs/angular/angular-sweet-alert/SweetAlert.js"></script>
+	
+	<!-- angular indexedDB -->
+	<script src="js/libs/angular/angular-indexed-db.js"></script>
+	<script src="js/plugin/select2/select_angularjs.js"></script>
+	<script
+		src="js/libs/angular/angular-sanitize.js"></script>
+		
+		
+	<script src="js/libs/jsLogger/jsLogger.js"></script>
+	<script src="js/libs/moment-timezone/moment-timezone-with-data.min.js"></script>
+
+	<!-- Demo purpose only 
+		ANGULAR: Handled via "ribbon" directive
+    <script src="js/demo.js"></script>-->
+	<script src="js/websocket/sockjs-0.3.4.js"></script>
+	<script src="js/websocket/stomp.js"></script>
+	
+	 <script src="app/main/js/test-controller.js"></script>
+
+	
+	<script src="js/angular-datatable/smart-table.min.js"></script>
+	<script type="text/javascript" src="js/libs/angular/angularjs-block-ui/angular-block-ui.js"></script>
+	<script src="app/common/ui-bootstrap-module/uiBootstrapModule.js"></script>
+	
+	
+	
+	
+	
+	<!-- MAIN APP JS FILE -->
+	<script src="js/app.js"></script>
+	<script src="app/gbs-app.js"></script>
+	<script src="app/constant-resources.js"></script>
+	<script src="app/app-constant.js"></script>
+	
+	
+	<script src="app/common/services/common-services.js"></script> 
+	<script src="app/common/services/lookup-services.js"></script> 
+	<script src="app/common/directives/common-directives.js"></script>
+	<script src="app/common/directives/common-lookup-directives.js"></script>
+	<script src="app/common/directives/common-file-model.js"></script>
+	<script src="app/common/directives/common-attachment.js"></script>
+	<script src="app/common/directives/common-decree-table.js"></script>
+	<script src="app/common/directives/common-member-table.js"></script>
+	<script src="app/common/filters/common-filters.js"></script>
+	<script src="app/main/js/board-managment-controller.js"></script>
+	<script src="app/notification/js/notification-controller.js"></script>
+	<script src="app/search/board/js/board-search-controller.js"></script>
+	<script src="app/search/member/js/member-search-contoller.js"></script>
+	<script src="app/update/js/update-board-managment-controller.js"></script>
+	
+	
+	
+	
+	  	<!-- angular cookies -->
+	<script src="js/libs/angular/angular-cookies.js"></script>
+
+	<!-- MAIN ANGULAR JS FILE -->
+	<script src="js/ng/ng.controllers.js"></script>
+	<script src="js/ng/ng.directives.js"></script>
+
+	<!-- PLUNKER -->
+	<script src="js/ng/plunker.js"></script>
+
+	<!-- Your GOOGLE ANALYTICS CODE Below -->
+<!-- 	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push([ '_setAccount', 'UA-XXXXXXXX-X' ]);
+		_gaq.push([ '_trackPageview' ]);
+
+		(function() {
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl'
+					: 'http://www')
+					+ '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+		})();
+	</script> -->
+	
+<script>
+$(document).ready(function() {
+	calcOffset();
+	checkSession();
+ });
+ 
+  function calcOffset() {
+	    var serverTime = $.cookie('serverTime');
+	    if(serverTime==null || serverTime==''){
+	    	$.removeCookie('serverTime', { path: '/' });
+	    	$.removeCookie('clientTimeOffset', { path: '/' });
+	    	$.removeCookie('sessionExpiry', { path: '/' });
+	    	$.removeCookie('userInfo', { path: '/' });
+	    	$(location).attr('href', '/crms/login.html?error=Invalid Session');
+		}else{
+			serverTime = serverTime==null ? null : Math.abs(serverTime);
+		    var clientTimeOffset = (new Date()).getTime() - serverTime;
+		    $.cookie('clientTimeOffset', clientTimeOffset , {path: '/' });
+		}
+  }
+  
+   function checkSession() {
+	    var sessionExpiry = $.cookie('sessionExpiry');
+	    if(sessionExpiry==null || sessionExpiry==''){
+	    	$.removeCookie('serverTime', { path: '/' });
+	    	$.removeCookie('clientTimeOffset', { path: '/' });
+	    	$.removeCookie('sessionExpiry', { path: '/' });
+	    	$.removeCookie('userInfo', { path: '/' });
+	    	$(location).attr('href', '/gbs/login.html?error=Invalid Session');
+		}else{
+			sessionExpiry = Math.abs($.cookie('sessionExpiry'));
+			var timeOffset = Math.abs($.cookie('clientTimeOffset'));
+		    var localTime = (new Date()).getTime();
+		    if (localTime - timeOffset > (sessionExpiry+10000)) { // 10 extra seconds to make sure
+		    	$.removeCookie('serverTime', { path: '/' });
+		    	$.removeCookie('clientTimeOffset', { path: '/' });
+		    	$.removeCookie('sessionExpiry', { path: '/' });
+		    	$.removeCookie('userInfo', { path: '/' });
+		    	$(location).attr('href', '/gbs/login.html?error=Invalid Session');
+		    } else {
+		        setTimeout('checkSession()', 10000);
+		    }
+		}
+ }
+	</script>
+</body>
+
+</html>

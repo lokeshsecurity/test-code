@@ -1,0 +1,27 @@
+{  
+    "COLOR" : "Farge",
+    "HELLO" : "Hallo",
+    "HELLO_WORLD" : "Hallo verden!",
+    "HEALTH_SERVICES" : "الخدمات الصحية",
+    "DETAILS" : "التفاصيل",
+    "HEALTH_SERVICES_MENU" : "قائمة الخدمات الصحية",
+    "CPR" : "الرقم الشخصي",
+    "NAME" : "الاسم",
+    "MEDICAL_CHECK_UP" : "إجراء فحص طبي",
+    "APPOINTMENTS_FOLLOW_UP" : "متابعة مواعيد",
+    "PSYCOTHERAPY_SERVICES" : "الخدمات النفسية", 
+    "PHYSIOTHERAPY_SERVICES" : "العلاج الطبيعي",
+    "MEDICINE" : "الأدوية",
+    "ADD_MEDICAL_CHECK_UP_RECORD" : "اضافة فحص طبي جديد",
+    "ELDERLY_CHECK_UP_RECORD" : "فحوصات المسن",
+    "CHECK_UP_NAME" : "اسم الفحص",
+    "CHECK_UP_INTERVAL" : "فترة الفحص",
+    "CHECK_UP_PLACE" : "مكان الموعد",
+    "CHECK_UP_DATE" : "تاريخ الفحص",
+    "CHECK_UP_TIME" : "وقت الفحص",
+    "NEXT_CHECK_UP_DATE" : "تاريخ الفحص التالي",
+    "NEXT_CHECK_UP_TIME" : "وقت الفحص التالي",
+    "CHECK_UP_NOTES" : "الملاحظات",
+    "CHECK_UP_SAVE" : "حفظ"
+   
+}

@@ -1,0 +1,321 @@
+<div data-ng-controller="searchMemberController">
+
+
+<!-- START ROW -->
+
+<div class="row">
+
+	<!-- NEW COL START -->
+	<article class="col-sm-12 col-md-12 col-lg-12">
+
+		<!-- Widget ID (each widget will need unique ID)-->
+		<div class="jarviswidget personData" id="wid-id-42" data-widget-editbutton="false"
+			data-widget-custombutton="false" data-widget-deletebutton="false"
+			data-widget-fullscreenbutton="false">
+			<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+					
+					data-widget-colorbutton="false"	
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true" 
+					data-widget-sortable="false"
+					
+				-->
+			<header>
+				<span class="widget-icon "> <i class="fa fa-edit"></i>
+				</span>
+				<h2> {{ 'SEARCH_MEMBER_TITLE' | constant}} </h2>
+			</header>
+
+			<!-- widget div-->
+			<div>
+
+				<!-- widget edit box -->
+				<div class="jarviswidget-editbox">
+					<!-- This area used as dropdown edit box -->
+
+				</div>
+				<!-- end widget edit box -->
+
+				<!-- widget content -->
+				<div class="widget-body no-padding">
+				<form action="" id="member-form" class="smart-form"
+						novalidate="novalidate">
+						<div class="col-lg-12">
+							<div class="row">
+										<div class="col-md-4">
+											<section class="col-md-7">
+												<label class="input"> <input
+													placeholder="{{ 'MEMBER_OCCUPATION_LABLE' | constant}}" data-ng-model="searchMember.occupation" valid-character tooltip="{{searchMember.occupation.$valid ? '' : ('NOT_ALLOWED_NUMBERS' | constant)}}"  tooltip-trigger="focus" tooltip-placement="top" maxlength="255">
+												</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input"> {{ 'MEMBER_OCCUPATION_LABLE' | constant}} </label>
+											</section>
+										</div>
+										
+										<div class="col-md-4">
+											<section class="col-md-7">
+												<label class="input">
+												 <input
+													placeholder="{{ 'MEMBER_NAME_LABLE' | constant}} " data-ng-model="searchMember.memberName" valid-character tooltip="{{searchMember.memberName.$valid ? '' : ('NOT_ALLOWED_NUMBERS' | constant)}}"  tooltip-trigger="focus" tooltip-placement="top" maxlength="255">
+												<!--  
+													<ui-select ng-model="member.name">
+														    <ui-select-match placeholder="{{ 'MEMBER_NAME_LABLE' | constant}}">  {{$select.selected.memberName}} </ui-select-match>
+														    <ui-select-choices repeat="member in members | filter:$select.search"  refresh="searchMember($select.search)" refresh-delay="0">
+														      {{member.memberName}}
+														    </ui-select-choices>
+										 			</ui-select>
+										 			-->
+												</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input"> {{ 'MEMBER_NAME_LABLE' | constant}} </label>
+											</section>
+											
+										</div>
+										
+										<div class="col-md-4">
+											<section class="col-md-7">
+												<label class="input"> <input
+													placeholder="{{ 'CPR_NUMBER_LABLE' | constant}} " data-ng-model="searchMember.cprNumber" ng-blur="isValidCprLength(searchMember.cprNumber);" maxlength="9" 
+													valid-number tooltip="{{searchMember.cprNumber.$valid ? '' : ('CPR_NUMBER_9_DIGITS' | constant)}}"  tooltip-trigger="focus" tooltip-placement="top">
+												</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input"> {{ 'CPR_NUMBER_LABLE' | constant}} </label>
+											</section>
+										</div>
+							</div>
+								
+								<div class="row">
+										<div class="col-md-4">
+											<section class="col-md-7">
+												<label class="input"> 
+													<cio-lookup
+															data-placeholder="{{ 'MEMEBR_ONBEHALF_OF_LABLE' | constant}}" 
+															data-lookup-list="lookupMap.DESTINATION_ORGANIZATIONS"
+															data-ng-model="searchMember.organizaionOnBehalf"
+															data-style="width:100%;" data-reset="resetMemberOrganizationOnBehalf">
+													</cio-lookup>
+												</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input"> {{ 'MEMEBR_ONBEHALF_OF_LABLE' | constant}} </label>
+											</section>
+										</div>
+										
+										<div class="col-md-4">
+											<section class="col-md-7">
+												<label class="input"> 
+													<cio-lookup
+															data-placeholder="{{ 'MEMBER_ROLE_LABEL' |constant}}" 
+															data-lookup-list="lookupMap.ROLES"
+															data-ng-model="searchMember.role"
+															data-style="width:100%;" data-reset="resetMemberRole">
+													</cio-lookup>
+												</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input">  {{ 'MEMBER_ROLE_LABEL' |constant}} </label>
+											</section>
+										</div>
+										
+										<div class="col-md-4">
+											<section class="col-md-7">
+												<label class="input"> 
+													<cio-lookup
+															data-placeholder="{{ 'MEMBER_ORGANIZATION_LABEL' | constant}}" 
+															data-lookup-list="lookupMap.DESTINATION_ORGANIZATIONS"
+															data-ng-model="searchMember.organization"
+															data-style="width:100%;" data-reset="resetMemberOrganization">
+													</cio-lookup>
+												</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input"> {{ 'MEMBER_ORGANIZATION_LABEL' | constant}}  </label>
+											</section>
+										</div>
+								</div>
+								
+									<div class="row">
+									<div class="col-md-6">
+											<section class="col-md-4" style="width: 36%;">
+													<label class="input"> <i ng-click="open($event , 'openedMemberEndDateTo')"
+														class="icon-append fa fa-calendar"></i> <input type="text"  ng-readonly="true"
+														class="form-control" datepicker-popup="yyyy-MM-dd"
+														ng-model="searchMember.endDateTo" is-open="openedMemberEndDateTo" placeholder="{{'TO_LABEL' | constant}}"
+														datepicker-options="dateOptions"
+														ng-required="true"
+														close-text="Close" gbs-date/>
+													</label>
+											</section>
+											
+											<section class="col-md-1" style="width: 0.5%;"></section>
+											
+											<section class="col-md-4" style="width: 36%;">
+													<label class="input"> <i ng-click="open($event , 'openedMemberEndDateFrom')"
+														class="icon-append fa fa-calendar"></i> <input type="text"  ng-readonly="true"
+														class="form-control" datepicker-popup="yyyy-MM-dd"
+														ng-model="searchMember.endDateFrom" is-open="openedMemberEndDateFrom" placeholder="{{'FROM_LABEL' | constant}}"
+														datepicker-options="dateOptions"	
+														ng-required="true"
+														close-text="Close" gbs-date/>
+													</label>
+											</section>
+											<section class="col-md-3" style="width: 22%;">
+												<label class="input"> {{ 'MEMBER_END_DATE_LABEL' | constant}}  </label>
+											</section>
+										</div>
+										
+										<div class="col-md-6">
+											<section class="col-md-4" style="width: 36%;">
+													<label class="input"> <i ng-click="open($event , 'openedMemberStartDateTo')"
+														class="icon-append fa fa-calendar"></i> <input type="text" ng-readonly="true"
+														class="form-control" datepicker-popup="yyyy-MM-dd"
+														ng-model="searchMember.startDateTo" is-open="openedMemberStartDateTo" placeholder="{{'TO_LABEL' | constant}}"
+														datepicker-options="dateOptions"
+														ng-required="true"
+														close-text="Close" gbs-date/>
+													</label>
+											</section>
+											
+											<section class="col-md-1" style="width: 0.5%;"></section>
+											<section class="col-md-4" style="width: 36%;">
+													<label class="input"> <i ng-click="open($event , 'openedMemberStartDateFrom')" 
+														class="icon-append fa fa-calendar"></i> <input type="text" ng-readonly="true"
+														class="form-control" datepicker-popup="yyyy-MM-dd"
+														ng-model="searchMember.startDateFrom" is-open="openedMemberStartDateFrom" placeholder="{{'FROM_LABEL' | constant}}"
+														datepicker-options="dateOptions" 
+														ng-required="true"
+														close-text="Close" gbs-date/>
+													</label>
+											</section>
+											
+											<section class="col-md-3" style="width: 22%;">
+												<label class="input"> {{ 'MEMBER_START_DATE_LABEL' | constant}} </label>
+											</section>
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="col-md-4"></div>
+										<div class="col-md-4"></div>
+										<div class="col-md-4">
+											<section class="col-md-7">
+												<label class="input"> <cio-lookup
+														data-placeholder="{{'MEMBER_STATUS_LABEL' | constant}} "
+														data-lookup-list="lookupMap.MEMBER_STATUS_LIST"
+														data-ng-model="searchMember.status"
+														data-reset="resetStatusType"> </cio-lookup>
+
+												</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input"> {{'MEMBER_STATUS_LABEL' |
+													constant}} </label>
+											</section>
+										</div>
+									</div>
+									
+								<div class="row">
+										<div style="text-align: center;"> 
+												<button id="searchMember" type="button" class="btn btn-primary btn-lg" ng-click="search();" style="margin-left: 1%;" scroll-to="#exportMemberDiv"> {{ 'SEARCH_MEMBER_BUTTON' | constant}} </button>
+												<button id="clearMemeber" type="button" class="btn btn-info btn-lg" ng-click="clearResult();" style="margin-right: 1%;"> {{ 'SEARCH_BOARD_CLEAR_BUTTON' | constant}} </button>
+										</div>
+								</div>	
+					</div>
+					</form>
+										<!-- table here -->
+									<div class="col-sm-12 col-md-12 col-lg-12">
+				<div>
+			<table st-table="displayedCollection" st-safe-src="result"  st-filtered-collection="filteredCollection"
+				class="table table-striped table-bordered table-hover" id="searchMember">
+				<thead>
+					<tr>
+						<th st-sort="cprNumber" width="10%">{{ 'CPR_NUMBER_LABLE' | constant}}</th>
+						<th st-sort="boardName" width="10%">{{ 'BOARD_NAME_LABEL' | constant}}</th>
+						<th st-sort="memberName" width="10%">{{ 'MEMBER_NAME_LABLE' | constant}}</th>
+						<th st-sort="memberOccupation" width="10%">{{ 'MEMBER_OCCUPATION_LABLE' | constant}}</th>
+						<th st-sort="organizationName" width="12%"> {{ 'MEMBER_ORGANIZATION_LABEL' | constant}} </th>
+						<th st-sort="roleName" width="10%"> {{ 'MEMBER_ROLE_LABEL' |constant}} </th>
+						<th st-sort="organizaionOnBehalfName" width="12%">{{ 'MEMEBR_ONBEHALF_OF_LABLE' | constant}}</th>
+						<th st-sort="memberStartDate" width="7%">{{ 'MEMBER_START_DATE_LABEL' | constant}}</th>
+						<th st-sort="memberEndDate" width="7%">{{ 'MEMBER_END_DATE_LABEL' | constant}}</th>
+						<th st-sort="statusName" width="5%">{{ 'MEMBER_STATUS_LABEL' | constant}}</th>
+						<th width="7%">{{ 'VIEW_LOG_BUTTON' | constant}}</th>
+					</tr>
+
+					<tr>
+						<th colspan="11"><input st-search placeholder="بحث"
+							class="input-sm form-control" type="search" /></th>
+					</tr>
+				</thead>
+
+
+
+				<tr ng-repeat="member in displayedCollection track by $index">
+					<td>{{ member.cprNumber}}</td>
+					 <td>
+					  		<span><a href="#/board/update/{{member.boardId}}">{{member.boardName}}</a></span>
+					 </td>
+					<td>{{ member.memberName }}</td>
+					<td>{{ member.memberOccupation }}</td>
+					<td>{{ member.organizationName}}</td>
+					<td>{{ member.roleName}}</td>
+					<td>{{ member.organizationOnBehalfName}}</td>
+					<td><label>
+							<p ng-bind="member.memberStartDate | date:'dd-MM-yyyy'"></p>
+					</label></td>
+					<td><label>
+							<p ng-bind="member.memberEndDate | date:'dd-MM-yyyy'"></p>
+					</label></td>
+					<td>{{member.statusName}}</td>
+					 <td>
+					  		<button class=" btn btn-warning btn-sm" type="button"
+								data-ng-click="viewLog(member.memberId , member.memberName);">{{'VIEW_LOG_BUTTON'| constant}}
+								<i class="glyphicon glyphicon-list-alt"></i>
+							</button>	
+					 </td>
+				</tr>
+					
+				<tfoot>
+					<tr>
+						<td colspan="12" class="text-center">
+							<div st-pagination="" st-items-by-page="10"
+								st-displayed-pages="1000000"></div>
+						</td>
+					</tr>
+				</tfoot>
+
+			</table>
+			
+			<div style="margin: 1%;">
+				<div style="text-align: center;" id="exportMemberDiv">
+					<button id="exportMemberExcel" type="button" class="btn btn-success btn-sm" ng-click="exportExcel();" ng-show="filteredCollection!=null && filteredCollection.length >0 ">{{'EXPORT_EXCEL'| constant}} <i class="fa fa-file-excel-o" aria-hidden="true"></i></button>
+				</div>
+			</div>
+		</div>
+		</div>
+				</div>
+				<!-- end widget content -->
+
+			</div>
+			<!-- end widget div -->
+
+		</div>
+		<!-- end widget -->
+
+
+	</article>
+	<!-- END COL -->
+
+</div>
+
+<!-- END ROW -->
+
+</div>

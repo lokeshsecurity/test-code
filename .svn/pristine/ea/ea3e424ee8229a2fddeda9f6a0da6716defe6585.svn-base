@@ -1,0 +1,27 @@
+{  
+    "COLOR" : "Farge",
+    "HELLO" : "Hallo",
+    "HELLO_WORLD" : "Hallo verden!",
+    "HEALTH_SERVICES" : "Health Services",
+    "DETAILS" : "Details",
+    "HEALTH_SERVICES_MENU" : "Health Services Menu",
+    "CPR" : "CPR",
+    "NAME" : "Name",
+    "MEDICAL_CHECK_UP" : "Medical Check Up",
+    "APPOINTMENTS_FOLLOW_UP" : "Aِppointments Follow Up",
+    "PSYCOTHERAPY_SERVICES" : "Psychotherapy", 
+    "PHYSIOTHERAPY_SERVICES" : "Physiotherapy Services",
+    "MEDICINE" : "Medicine",
+    "ADD_MEDICAL_CHECK_UP_RECORD" : "Add Medical Check Up",
+    "ELDERLY_CHECK_UP_RECORD" : "Elderly Check Up Records",
+    "CHECK_UP_NAME" : "Check Up",
+    "CHECK_UP_INTERVAL" : "Check Up Interval",
+    "CHECK_UP_PLACE" : "Check Up Place",
+    "CHECK_UP_DATE" : "Check Up Date",
+    "CHECK_UP_TIME" : "Check Up Time",
+    "NEXT_CHECK_UP_DATE" : "Next Check Up Date",
+    "NEXT_CHECK_UP_TIME" : "Next Check Up Time",
+    "CHECK_UP_NOTES" : "Remarks",
+    "CHECK_UP_SAVE" : "Save"
+   
+}

@@ -1,0 +1,102 @@
+<div class="modal-content">
+<div class="modal-body">
+<div class="row">			
+			
+			<div class="jarviswidget-editbox">
+				<!-- This area used as dropdown edit box -->
+				<input class="form-control" type="text">
+			</div>
+
+			 <div class="widget-body row smart-form">
+			 <div class="row" style="padding-right: 2%"></div>
+					
+				 <!--  File Upload Form -->
+				<form>
+					<div class="col-md-2 input">
+						<button class=" button" data-ng-click="addAttachment()"
+							style="margin: 0px;">ادراج</button>
+					</div>
+					
+					<div class="col-md-4 input input-file">
+						<span class="button"> <input type="file"
+							onchange="javascript: document.getElementById('fileName').value = this.value"
+							cio-file-model="fileList"> اختر الملف
+						</span> <input id="fileName" class="form-control " type="text"
+							readonly="" style="text-align: left; width: 90%">
+					</div>
+					
+				</form>
+	
+				 <!--  Attachment Types -->
+				<div class="col-md-6  namesDiv">
+					<div>
+						<section class="col-md-2 pull-right">
+							<label class="input ml5" style="padding-right: 20%;">نوع
+								المرفق</label>
+						</section>
+						<section class="col-md-7 pull-right">
+						  <label class="input" style="padding-right: 10%;">
+							<cio-lookup style="padding-right: 10%;"
+										data-lookup-list="attachmentTypeList"
+										data-ng-model="attachmentType"
+										data-default-option="defaultOption"> 
+						   </cio-lookup>
+						   </label>
+						</section>
+					</div>
+				</div>
+							
+			   <div class="row"> </div> 		  
+			   </div>
+						<!--   Attachment List Render Table  -->
+						<div class="col-md-12">
+							<div>
+								<table st-table="displayedAttachments"
+									st-safe-src="attachmentList" class="table table-striped">
+									<thead>
+										<tr>
+											<th st-sort="attachmentType">نوع المرفق</th>
+											<th st-sort="fileSize">حجم المرفق</th>
+											<th st-sort="fileName">اسم المرفق</th>
+											<th st-sort="createdOn">تاريخ الارفاق</th>
+											<th st-sort="createdBy">اسم المستخدم</th>
+											<th>مسح المرفق</th>
+										</tr>
+									</thead>
+   
+   
+   
+									<tr ng-repeat="attachment in attachmentList">
+										<td>{{
+											attachment.attachmentType.attachmentTypeArabicName}}</td>
+										<td>{{ attachment.fileSize }}</td>
+										<td><a
+											ng-href="attachment/{{attachment.attachmentId}}"
+											target="_blank"> {{ attachment.fileName }} </a></td>
+										<td><label> 
+												<p ng-bind="attachment.createdOn | date:'dd-MM-yyyy'"></p>
+										</label></td>
+										<td>{{attachment.createdBy}}</td>
+										<td><button class=" btn errorBtn btn-sm"
+												data-ng-click="removeAttachment($index,attachment.attachmentId)">
+												<i class="glyphicon glyphicon-remove"></i>
+											</button></td>
+									</tr>
+
+									<tfoot>
+										<tr>
+											<td colspan="12" class="text-center">
+												<div st-pagination="" st-items-by-page="itemsByPage"
+													st-displayed-pages="1000000"></div>
+											</td>
+										</tr>
+									</tfoot>
+
+								</table>
+							</div>
+						</div>
+
+
+</div>	
+</div>
+</div>

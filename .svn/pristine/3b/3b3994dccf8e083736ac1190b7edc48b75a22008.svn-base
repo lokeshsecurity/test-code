@@ -1,0 +1,87 @@
+<div class="row">
+	<div class="col-md-12">
+		<div>
+			<table st-table="displayedCollection" st-safe-src="list"
+				class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+					<!--  
+						<th st-sort="number" width="12%">رقم الآداة التشريعية</th>
+						<th st-sort="year" width="12%">سنة الآداة التشريعية</th>
+						<th st-sort="type.name" width="12%">نوع الآداة التشريعية</th>
+					-->	
+						<th width="20%">{{ 'DECREE_LABLE' | constant}}</th>
+						<th width="10%">{{ 'ISSUE_DATE_MELADY_LABLE' | constant}}</th>
+						<th width="10%">{{ 'ISSUE_DATE_HIJRY_LABLE' | constant}}</th>
+						<th st-sort="attachment.name" width="21%">{{ 'ATTACHMENT_NAME_LABEL' | constant}}</th>
+						<th st-sort="attachment.name" width="5%">{{'NOTES_LABEL' | constant}}</th>
+						<th st-sort="attachmnetType.name" width="10%">{{ 'ATTACHMENT_TYPE_LABEL' | constant}}</th>
+						<th st-sort="attachment.createdOn" width="12%"> {{ 'ATTACHMENT_CREATION_DATE_LABEL' | constant}} </th>
+						<th width="12%" ng-show="showRemoveColumn"> {{ 'UPDATE_DELETE_LABEL' | constant}} </th>
+					</tr>
+
+					<tr>
+						<th colspan="8"><input st-search placeholder="بحث"
+							class="input-sm form-control" type="search" /></th>
+					</tr>
+				</thead>
+
+
+
+				<tr ng-repeat="decree in displayedCollection track by $index">
+				<!-- 
+					<td>{{decree.number}}</td>
+					<td>{{ decree.year }}</td>
+					<td>{{ decree.type.name }}</td>
+					 -->
+					 <td>
+					 	<decree-low-concat decree-number="decree.number" decree-year="decree.year" decree-type="decree.type.name"></decree-low-concat>
+					 </td>
+					 		
+					  <td>
+					  		{{decree.issueDateMelady}}
+					 </td>
+					 
+					  <td>
+					  		{{decree.issueDateHijry}}
+					 </td>
+					<td>
+						<a ng-click="downloadFile(decree.attachment.base64 , decree.attachment.type , decree.attachment.name);">
+							{{ decree.attachment.name }} 
+						</a>
+							
+						<!--  	<decree-low-concat decree-number="decree.number" decree-year="decree.year" decree-type="decree.type.name"></decree-low-concat> -->
+					</td>
+					<td>
+						<i id="gear-icon" class="fa fa-comment fa-lg" ng-show="(decree.notes!=null&&decree.notes!='')" ng-click="showNotes(decree);"></i>
+					</td>
+					<td>
+							{{decree.attachmentType.name}}
+					</td>
+					<td><label>
+							<p ng-bind="decree.attachment.createdOn | date:'dd-MM-yyyy HH:mm'" style="direction: ltr;"></p>
+					</label></td>
+					<td ng-show="showRemoveColumn">
+						<button class=" btn btn-primary btn-sm" type="button"
+							data-ng-click="edit(decree)" data-ng-show="(decree.decreeId == undefined  || decree.decreeId == null)">
+							<i class="glyphicon glyphicon-edit"></i>
+						</button>
+						<button class=" btn errorBtn btn-sm" data-ng-click="remove(decree);" data-ng-show="(decree.decreeId == undefined  || decree.decreeId == null)" type="button">
+							<i class="glyphicon glyphicon-remove"></i>
+						</button>
+					</td>
+				</tr>
+
+				<tfoot>
+					<tr>
+						<td colspan="12" class="text-center">
+							<div st-pagination="" st-items-by-page="5"
+								st-displayed-pages="1000000"></div>
+						</td>
+					</tr>
+				</tfoot>
+
+			</table>
+		</div>
+	</div>
+</div>

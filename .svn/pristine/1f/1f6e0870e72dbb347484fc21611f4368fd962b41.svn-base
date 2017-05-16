@@ -1,0 +1,240 @@
+<style>
+	
+div.calendars {width: 350px !important;}
+
+div.calendars-month {
+    float: left;
+    width: 348px !important;
+    border: 1px solid #444;
+    text-align: center;
+}
+	
+</style>
+
+
+<!-- START ROW -->
+
+<div class="row">
+
+	<!-- NEW COL START -->
+	<article class="col-sm-12 col-md-12 col-lg-12">
+
+		<!-- Widget ID (each widget will need unique ID)-->
+		<div class="jarviswidget personData" id="wid-id-37" data-widget-editbutton="false"
+			data-widget-custombutton="false" data-widget-deletebutton="false"
+			data-widget-fullscreenbutton="false">
+			<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+					
+					data-widget-colorbutton="false"	
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true" 
+					data-widget-sortable="false"
+					
+				-->
+			<header>
+				<span class="widget-icon "> <i class="fa fa-edit"></i>
+				</span>
+				<h2> {{ 'DECREES_TITLE' | constant}} </h2>
+			</header>
+
+			<!-- widget div-->
+			<div>
+
+				<!-- widget edit box -->
+				<div class="jarviswidget-editbox">
+					<!-- This area used as dropdown edit box -->
+
+				</div>
+				<!-- end widget edit box -->
+
+				<!-- widget content -->
+				<div class="widget-body no-padding">
+				<form action="" id="decreeForm" class="smart-form"
+						novalidate="novalidate">
+						<div class="col-lg-12">
+						<div class="row">
+							<div class="col-md-6 fr">
+											<section class="col-md-4">
+											</section>
+											<section class="col-md-5">
+												<cio-lookup
+														data-placeholder="اختر نوع المرفق" 
+														data-lookup-list="lookupMap.ATTACHMENT_TYPES"
+														data-ng-model="decree.attachmentType" data-change-callback-fn="showDecreeFields(type);" data-reset="resetSelectAttachment" data-disabled="disableAttachmentType">
+												</cio-lookup>
+											</section>
+											<section class="col-md-3">
+												<label class="input"> {{'ATTACHMENT_TYPE_LABEL' | constant}} </label>
+											</section>
+							</div>
+						</div>
+							<div class="row" ng-show="showDecreeData">
+										<div class="col-md-6">
+											<section class="col-md-6">
+												<cio-lookup
+														data-placeholder="اختر  الاداة التشريعية" 
+														data-lookup-list="lookupMap.DECREE_TYPES"
+														data-ng-model="decree.type" data-reset="resetSelectDecree">
+												</cio-lookup>
+											</section>
+											<section class="col-md-5">
+												<label class="input"> {{'DECREE_TYPE_LABEL' | constant}} </label>
+											</section>
+										</div>
+										
+										<div class="col-md-6">
+										
+												<div class="col-md-6">
+													<section class="col-md-6">
+														<label class="input"> 
+															<input type="text" id="decreeYear" placeholder="{{'DECREE_YEAR_LABEL' | constant}} " class="w80"
+																	data-ng-model="decree.year" valid-year  ng-change="showYearValidation();" tooltip="{{yearValidationError ? ('DECREE_YEAR_ERROR_MSG' | constant) : ''}}"  tooltip-trigger="focus" tooltip-placement="top" maxlength="4">
+														</label>
+													</section>
+													<section class="col-md-5">
+														<label class="input"> {{'DECREE_YEAR_LABEL' | constant}} </label>
+													</section>
+												</div>
+			
+												<div class="col-md-6">
+													<section class="col-md-6">
+														<label class="input"> <input placeholder="{{'DECREE_NUMBER_LABEL' | constant}}" id="decreeNumber" name="decreeNumber"
+															data-ng-model="decree.number" valid-number tooltip="{{decreeForm.decreeNumber.$valid ? '' : ('DECREE_NUMBER_ERROR_MSG' | constant)}}"  tooltip-trigger="hover" tooltip-placement="top" maxlength="9">
+														</label>
+													</section>
+													<section class="col-md-6">
+														<label class="input"> {{'DECREE_NUMBER_LABEL' | constant}} </label>
+													</section>
+											    </div>
+	
+										</div>
+							</div>
+							<div class="row" ng-show="showDecreeData">
+										<div class="col-md-5">
+											<section class="col-md-8">
+													<label class="input mrgr-10Per">
+														<input type="text"  ng-readonly="true" id="hijryPicker"
+																class="form-control" 
+																ng-model="decree.issueDateHijry" style="padding-right: 10% !important;"/>
+													</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input mrg-r-30pMinus"> {{'HEGRAY_LABLE' | constant}}</label>
+											</section>
+										</div>
+										<div class="col-md-4">
+											<section class="col-md-12">
+													<label class="input w75" > <i ng-click="open($event , 'openedIssueDateMelady')"
+														class="icon-append fa fa-calendar"></i> <input type="text"  ng-readonly="true"
+														class="form-control" datepicker-popup="yyyy-MM-dd"
+														ng-model="decree.issueDateMelady" is-open="elements.openedIssueDateMelady"
+														datepicker-options="dateOptions"
+														ng-required="true"
+														close-text="Close" gbs-date/>
+													</label>
+											</section>
+										</div>
+										<div class="col-md-3">
+											<section class="col-md-6">
+												<label class="input"> {{ 'MELADY_LABEL' | constant}} </label>
+											</section>
+											<section class="col-md-6">
+												<label class="input"> {{ 'ISSUE_DATE_DECREE_LABEL' | constant}} : </label>
+											</section>
+										</div>
+								</div>	
+								<div class="row" ng-show="showDecreeData">
+										<div class="col-md-6">
+										</div>
+										<div class="col-md-6">
+										
+												<div class="col-md-6">
+													
+												</div>
+			
+												<div class="col-md-6">
+													<section class="col-md-6">
+														<label class="input"> <textarea placeholder="{{'NOTES_PLACEHOLDER' | constant}}" id="decreeNotes" name="decreeNotes" rows="3" cols="150" draggable="false" maxlength="250"
+															data-ng-model="decree.notes"></textarea>
+														</label>
+													</section>
+													<section class="col-md-6">
+														<label class="input"> {{'NOTES_LABEL' | constant}} </label>
+													</section>
+											    </div>
+	
+										</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3  pull-right input input-file">
+										<span class="button arabic-font"> <input type="file"
+											onchange="javascript: document.getElementById('fileName').value = this.value.replace(/^.*[\\\/]/, '')" data-ng-model="myfile" base-sixty-four-input> {{ 'CHOOSE_FILE_LABEL' | constant}}
+										</span> <input id="fileName" class="form-control " type="text" style="text-align: left;">
+									</div>
+									<div class="col-md-9">
+											<button type="button" class="btn btn-success btn-sm" data-ng-click="addAttachment(myfile);myfile=null;" style="margin-right: 2%;">
+												<span class="glyphicon glyphicon-floppy-disk"></span> {{'SAVE_FILE_LABEL' | constant}}
+											</button>
+											<button type="button" class="btn btn-danger btn-sm" data-ng-click="deleteAttachment();" style="margin-right: 2%;" ng-show="editDecreeButton">
+												<span class="glyphicon glyphicon-remove"></span> {{'DELETE_FILE_LABEL' | constant}}
+											</button>
+										</div>
+								</div>	
+								
+								<div class="row">
+									<div class="mr-r-45per" ng-show="addDecreeButton">
+										<button id="addDecree" type="button" class="btn btn-primary btn-md w30" ng-click="addDecree();"> {{ 'ADD_BUTTON_LABEL' | constant}} </button>
+									</div>
+									<div class="mr-r-45per" ng-show="editDecreeButton">
+										<button id="updateDecree" type="button" class="btn btn-primary btn-md w30" ng-click="updateDecree(index);"> {{ 'UPDATE_BUTTON_LABEL' | constant}} </button>
+									</div>
+								</div>	
+							<decree-table list="decreeList" show-remove-column="true" edit-callback-fn="editDecree(index);" clear-callback-fn="clearDecreeData();" ></decree-table>
+						</div>
+					</form>
+				</div>
+				<!-- end widget content -->
+
+			</div>
+			<!-- end widget div -->
+
+		</div>
+		<!-- end widget -->
+
+
+	</article>
+	<!-- END COL -->
+
+</div>
+
+<!-- END ROW -->
+
+<script type="text/javascript">
+calendar = $.calendars.instance('islamic', 'ar'); 
+$('#hijryPicker').calendarsPicker({calendar: calendar,
+    showTrigger: '<i class="icon-append fa fa-calendar trigger calendars-trigger"></i>',
+    dateFormat: 'yyyy-mm-dd',
+    prevText: '< M', commandsAsDateFormat: true,
+    nextText: 'M >', commandsAsDateFormat: true,
+    todayText : 'اليوم',
+    clearText : 'مسح',
+    closeText : 'إغلاق'
+});
+
+// for angular to update ng-model refre to this url http://stackoverflow.com/questions/17109850/update-angular-model-after-setting-input-value-with-jquery
+$('#addDecree').click(function(){
+    var input = $('#hijryPicker');
+    input.trigger('input');
+});
+
+//for angular to update ng-model refre to this url http://stackoverflow.com/questions/17109850/update-angular-model-after-setting-input-value-with-jquery
+$('#updateDecree').click(function(){
+    var input = $('#hijryPicker');
+    input.trigger('input');
+});
+</script>

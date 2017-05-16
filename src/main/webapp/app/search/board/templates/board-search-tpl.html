@@ -1,0 +1,356 @@
+<div data-ng-controller="searchBoardController">
+
+	
+	<div class="row">
+		<section  id="widget-grid">
+			<div  class="col-sm-12 col-md-12 col-lg-12">
+					
+					<div class="row">
+
+	<!-- NEW COL START -->
+	<article class="col-sm-12 col-md-12 col-lg-12">
+
+		<!-- Widget ID (each widget will need unique ID)-->
+		<div class="jarviswidget personData" id="wid-id-36" data-widget-editbutton="false"
+			data-widget-custombutton="false" data-widget-deletebutton="false"
+			data-widget-fullscreenbutton="false">
+			<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+					
+					data-widget-colorbutton="false"	
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true" 
+					data-widget-sortable="false"
+					
+				-->
+			<header>
+				<span class="widget-icon "> <i class="fa fa-edit"></i>
+				</span>
+				<h2> {{ 'SEARCH_BOARD_TITLE' | constant}} </h2>
+			</header>
+
+			<!-- widget div-->
+			<div>
+
+				<!-- widget edit box -->
+				<div class="jarviswidget-editbox">
+					<!-- This area used as dropdown edit box -->
+
+				</div>
+				<!-- end widget edit box -->
+
+				<!-- widget content -->
+				<div class="widget-body no-padding">
+
+					<form action="" id="board-search-form" class="smart-form"
+						novalidate="novalidate">
+						<div class="col-lg-12">
+							<div class="row">
+									<div class="col-md-4">
+											<section class="col-md-7">
+													<label class="input"> 
+														<cio-lookup
+															data-placeholder="{{ 'BOARD_SOURCE_OARGNIZATION_LABEL' | constant}} " 
+															data-lookup-list="lookupMap.SOURCE_ORGANIZATIONS"
+															data-ng-model="search.sourceOrganization" data-reset="resetSearchSourceOrganization">
+														</cio-lookup>
+													</label>
+												</section>
+												<section class="col-md-4">
+													<label class="input"> {{ 'BOARD_SOURCE_OARGNIZATION_LABEL' | constant}} </label>
+												</section>
+										</div>
+										
+										<div class="col-md-4">
+											<section class="col-md-7">
+													<label class="input"> 
+													<input type="text" placeholder=" {{ 'BOARD_NAME_LABEL' | constant}} " 				
+														       data-ng-model="search.boardName" maxlength="255">
+													</label>
+												</section>
+											<section class="col-md-4">
+												<label class="input"> {{ 'BOARD_NAME_LABEL' | constant}} </label>
+											</section>
+										</div>
+										
+										<div class="col-md-4">
+											<section class="col-md-7">
+													<label class="input"> 
+													<cio-lookup
+															data-placeholder="{{ 'GOVERNMENT_BOARD_TYPE_LABEL' | constant}} " 
+															data-lookup-list="lookupMap.GOVERNMENT_TYPES"
+															data-ng-model="search.governmentBoardType" data-reset="resetGovernmentBoardType">
+														</cio-lookup>
+													</label>
+											</section>
+											<section class="col-md-5">
+												<label class="input"> {{ 'GOVERNMENT_BOARD_TYPE_LABEL' | constant}} </label>
+											</section>
+										</div>
+							
+							</div>
+							
+							<div class="row">
+										<div class="col-md-4">
+											<section class="col-md-7">
+												<cio-lookup
+														data-placeholder="اختر  الاداة التشريعية" 
+														data-lookup-list="lookupMap.DECREE_TYPES"
+														data-ng-model="search.decreeType" data-reset="resetSelectDecree">
+												</cio-lookup>
+											</section>
+											<section class="col-md-4">
+												<label class="input"> {{'DECREE_TYPE_LABEL' | constant}} </label>
+											</section>
+										</div>
+										
+										<div class="col-md-4">
+									
+													<section class="col-md-7">
+														<label class="input"> 
+															<input type="text" id="decreeYear" placeholder="{{'DECREE_YEAR_LABEL' | constant}} " class="w80"
+																	data-ng-model="search.decreeYear" year-valid  tooltip="{{board-search-form.decreeYear.$valid ? '' : ('DECREE_YEAR_VALID_MSG' | constant) }}"  tooltip-trigger="hover" tooltip-placement="top" maxlength="4">
+														</label>
+													</section>
+													<section class="col-md-4">
+														<label class="input"> {{'DECREE_YEAR_LABEL' | constant}} </label>
+													</section>
+												
+										</div>
+										
+										<div class="col-md-4">
+										
+											
+													<section class="col-md-7">
+														<label class="input"> <input placeholder="{{'DECREE_NUMBER_LABEL' | constant}}" id="decreeNumber" name="decreeNumber"
+															data-ng-model="search.decreeNumber" valid-number tooltip="{{board-search-form.decreeNumber.$valid ? '' : ('DECREE_NUMBER_ERROR_MSG' | constant)}}"  tooltip-trigger="hover" tooltip-placement="top" maxlength="9">
+														</label>
+													</section>
+													<section class="col-md-5">
+														<label class="input"> {{'DECREE_NUMBER_LABEL' | constant}} </label>
+													</section>
+											    
+	
+										</div>
+							</div>
+						
+							<div class="row">
+									<div class="col-md-6">
+											<section class="col-md-4" style="width: 36%;">
+													<label class="input"> <i ng-click="open($event , 'openedBoardEndDateTo')"
+														class="icon-append fa fa-calendar"></i> <input type="text"  ng-readonly="true"
+														class="form-control" datepicker-popup="yyyy-MM-dd"
+														ng-model="search.endDateTo" is-open="openedBoardEndDateTo" placeholder="{{'TO_LABEL' | constant}}"
+														datepicker-options="dateOptions"
+														ng-required="true"
+														close-text="Close" gbs-date/>
+													</label>
+											</section>
+											
+											<section class="col-md-1" style="width: 0.5%;"></section>
+											
+											<section class="col-md-4" style="width: 36%;">
+													<label class="input"> <i ng-click="open($event , 'openedBoardEndDateFrom')"
+														class="icon-append fa fa-calendar"></i> <input type="text"  ng-readonly="true"
+														class="form-control" datepicker-popup="yyyy-MM-dd"
+														ng-model="search.endDateFrom" is-open="openedBoardEndDateFrom" placeholder="{{'FROM_LABEL' | constant}}"
+														datepicker-options="dateOptions"	
+														ng-required="true"
+														close-text="Close" gbs-date/>
+													</label>
+											</section>
+											<section class="col-md-3" style="width: 22%;">
+												<label class="input"> {{ 'END_DATE_DECREE_LABLE' | constant}}  </label>
+											</section>
+										</div>
+										
+										<div class="col-md-6">
+											<section class="col-md-4" style="width: 36%;">
+													<label class="input"> <i ng-click="open($event , 'openedBoardStartDateTo')"
+														class="icon-append fa fa-calendar"></i> <input type="text" ng-readonly="true"
+														class="form-control" datepicker-popup="yyyy-MM-dd"
+														ng-model="search.startDateTo" is-open="openedBoardStartDateTo" placeholder="{{'TO_LABEL' | constant}}"
+														datepicker-options="dateOptions"
+														ng-required="true"
+														close-text="Close" gbs-date/>
+													</label>
+											</section>
+											
+											<section class="col-md-1" style="width: 0.5%;"></section>
+											<section class="col-md-4" style="width: 36%;">
+													<label class="input"> <i ng-click="open($event , 'openedBoardStartDateFrom')" 
+														class="icon-append fa fa-calendar"></i> <input type="text" ng-readonly="true"
+														class="form-control" datepicker-popup="yyyy-MM-dd"
+														ng-model="search.startDateFrom" is-open="openedBoardStartDateFrom" placeholder="{{'FROM_LABEL' | constant}}"
+														datepicker-options="dateOptions" 
+														ng-required="true"
+														close-text="Close" gbs-date/>
+													</label>
+											</section>
+											
+											<section class="col-md-3" style="width: 27%;">
+												<label class="input"> {{ 'START_DATE_DECREE_LABLE' | constant}} </label>
+											</section>
+										</div>
+							</div>
+							
+							
+							
+							<div class="row">
+								<div class="col-md-4">
+								
+								</div>
+								<div class="col-md-4">
+									<section class="col-md-7">
+											<label class="input"> 
+											 <cio-lookup
+													data-placeholder="{{'BOARD_STATUS_LABEL' | constant}} " 
+													data-lookup-list="lookupMap.BOARD_STATUS_LIST"
+													data-ng-model="search.status" data-reset="resetStatusType">
+											</cio-lookup>
+											 
+										</label>
+										</section>
+										<section class="col-md-4">
+											<label class="input"> {{'BOARD_STATUS_LABEL' | constant}} </label>
+										</section>
+								</div>
+								<div class="col-md-4">
+									<section class="col-md-7">
+										<label class="input"> 
+										 <cio-lookup
+												data-placeholder="{{'BOARD_DESTINATION_ORGANIZATION_LABEL' | constant}} " 
+												data-lookup-list="lookupMap.DESTINATION_ORGANIZATIONS"
+												data-ng-model="search.destinationOrganization" data-reset="resetDestinationOrganization">
+										</cio-lookup>
+										 
+									</label>
+									</section>
+									<section class="col-md-5">
+										<label class="input"> {{'BOARD_DESTINATION_ORGANIZATION_LABEL' | constant}} </label>
+									</section>
+								</div>
+							</div>
+							
+								<div class="row">
+										<div style="text-align: center;"> 
+												<button id="searchBoard" type="button" class="btn btn-primary btn-lg" ng-click="searchBoard();" style="margin-left: 1%;" scroll-to="#exportDiv"> {{ 'SEARCH_BOARD_BUTTON' | constant}} </button>
+												<button id="clear" type="button" class="btn btn-info btn-lg" ng-click="clearResult();" style="margin-right: 1%;"> {{ 'SEARCH_BOARD_CLEAR_BUTTON' | constant}} </button>
+										</div>
+								</div>
+							
+						 </div>
+					</form>
+					<div class="col-sm-12 col-md-12 col-lg-12">
+				
+				<!-- table here -->
+				<div>
+			<table st-table="displayedCollection" st-safe-src="result" st-filtered-collection="filteredCollection"
+				class="table table-striped table-bordered table-hover" id="serachBoard">
+				<thead>
+					<tr>
+						<th st-sort="boardName" width="15%">{{ 'BOARD_NAME_LABEL' | constant}}</th>
+						<th st-sort="governmentBoradTypeId" width="10%">{{ 'GOVERNMENT_BOARD_TYPE_LABEL' | constant}}</th>
+						<th st-sort="sourceOragnizationName" width="15%">{{ 'BOARD_SOURCE_OARGNIZATION_LABEL' | constant}}</th>
+						<th st-sort="boardStartDate" width="5%">{{ 'START_DATE_DECREE_LABLE' | constant}}</th>
+						<th st-sort="boardExpiryDate" width="5%"> {{ 'END_DATE_DECREE_LABLE' | constant}} </th>
+						<th st-sort="destinationOrganizationName" width="15%"> {{ 'BOARD_DESTINATION_ORGANIZATION_LABEL' | constant}} </th>
+						<th st-sort="decreeNumber" width="15%">{{ 'DECREE_LABLE' | constant}}</th>
+						<th st-sort="decreeIssueDateMelady" width="10%">{{ 'ISSUE_DATE_MELADY_LABLE' | constant}}</th>
+						<th width="10%">{{ 'VIEW_LOG_BUTTON' | constant}}</th>
+					</tr>
+
+					<tr>
+						<th colspan="9"><input st-search placeholder="بحث"
+							class="input-sm form-control" type="search" /></th>
+					</tr>
+				</thead>
+
+
+
+				<tr ng-repeat="board in displayedCollection track by $index">
+					 
+					  <td>
+					  		<span><a href="#/board/update/{{board.boardId}}">{{board.boardName}}</a></span>
+					 </td>
+					 <td>
+					  		<span>{{board.governmentBoradTypeId == '1'  ? ('BOARD_LABEL' | constant) : ('SEARCH_COMMITTE_LABEL_' | constant) }}</span>
+					 </td>
+					<td>
+							<span>{{board.sourceOragnizationName}}</span>
+					</td>
+					<td>
+							<label>
+								<p ng-bind="board.boardStartDate | date:'dd-MM-yyyy'" style="direction: ltr;"></p>
+							</label>
+					</td>
+					<td>
+						<label>
+							<p ng-bind="board.boardExpiryDate | date:'dd-MM-yyyy'" style="direction: ltr;"></p>
+						</label>
+					</td>
+					<td>
+						<span>{{board.destinationOrganizationName}}</span>
+					</td>
+					
+					<td>
+					 	<decree-low-concat decree-number="board.decreeNumber" decree-year="board.decreeYear" decree-type="board.decreeTypeName"></decree-low-concat>
+					 </td>
+					 		
+					  <td>
+					  		<span> {{board.decreeIssueDateMelady}} </span>
+					 </td>
+					 
+					 <td>
+					  		<button class=" btn btn-warning btn-sm" type="button"
+								data-ng-click="viewLog(board.boardId , board.boardName);">{{'VIEW_LOG_BUTTON'| constant}}
+								<i class="glyphicon glyphicon-list-alt"></i>
+							</button>	
+					 </td>
+				</tr>
+					
+				<tfoot>
+					<tr>
+						<td colspan="12" class="text-center">
+							<div st-pagination="" st-items-by-page="10"
+								st-displayed-pages="1000000"></div>
+						</td>
+					</tr>
+				</tfoot>
+
+			</table>
+			
+			<div style="margin: 1%;">
+				<div style="text-align: center;" id="exportDiv">
+					<button id="exportExcel" type="button" class="btn btn-success btn-sm" ng-click="exportExcel();" ng-show="filteredCollection!=null && filteredCollection.length >0 ">{{'EXPORT_EXCEL'| constant}} <i class="fa fa-file-excel-o" aria-hidden="true"></i></button>
+					<!--  <button type="button" class="btn btn-warning btn-sm" ng-click="exportExcel();" ng-show="result!=null && result.length >0 ">{{'EXPORT_PDF'| constant}} <i class="fa fa-file-pdf-o" aria-hidden="true"></i></i></button>-->
+				</div>
+			</div>
+		</div>
+			</div>
+				</div>
+				<!-- end widget content -->
+
+			</div>
+			<!-- end widget div -->
+
+		</div>
+		<!-- end widget -->
+
+
+	</article>
+	<!-- END COL -->
+</div>
+
+
+
+<!-- END ROW -->
+</div>
+			
+		</section>
+	</div>
+</div>

@@ -1,0 +1,112 @@
+<style>
+.modal-dialog {
+  width: 80%;
+}
+
+</style>
+
+<div class="modal-header" style="padding: 0px !important; direction: rtl !important;">
+  <h3 style="margin-right: 5% !important;">{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body" style="font-size: 15px; padding: 15px !important;direction: rtl !important;"">
+ 
+ 
+  <div class="row">
+	<div class="no-padding">
+		
+		<div>
+			<table st-table="data" st-safe-src="logs"
+				class="table table-striped table-bordered table-hover" id="memberLog">
+				<thead>
+					<tr>
+						<th st-sort="cprNumber" width="5%">{{ 'CPR_NUMBER_LABLE' | constant}}</th>
+						<th st-sort="boardName" width="10%">{{ 'BOARD_NAME_LABEL' | constant}}</th>
+						<th st-sort="memberName" width="10%">{{ 'MEMBER_NAME_LABLE' | constant}}</th>
+						<th st-sort="memberOccupation" width="10%">{{ 'MEMBER_OCCUPATION_LABLE' | constant}}</th>
+						<th st-sort="organizationName" width="10%"> {{ 'MEMBER_ORGANIZATION_LABEL' | constant}} </th>
+						<th st-sort="roleName" width="5%"> {{ 'MEMBER_ROLE_LABEL' |constant}} </th>
+						<th st-sort="memberStartDate" width="7%">{{ 'MEMBER_START_DATE_LABEL' | constant}}</th>
+						<th st-sort="memberEndDate" width="7%">{{ 'MEMBER_END_DATE_LABEL' | constant}}</th>
+						<th st-sort="statusName" width="7%">{{ 'MEMBER_STATUS_LABEL' | constant}}</th>
+						<th st-sort="loggedInUser" width="15%">{{ 'CREATED_BY_LABEL' | constant}}</th>
+						<th st-sort="createdOn" width="7%">{{ 'CREATED_ON_LABEL' | constant}}</th>
+						<th st-sort="actionOperation" width="7%"> {{ 'ACTION_LABLE' | constant}} </th>
+					</tr>
+
+					<tr>
+						<th colspan="12"><input st-search placeholder="بحث"
+							class="input-sm form-control" type="search" /></th>
+					</tr>
+				</thead>
+
+
+
+				<tr ng-repeat="member in data " st-index-get st-correct-index="currentIndex" st-list="{{logs}}" st-row="{{member}}">
+					 <td ng-class="{'mark' : (logs[currentIndex].cprNumber != logs[currentIndex+1].cprNumber) && logs[currentIndex+1] != undefined }">{{ member.cprNumber}}
+					 </td>
+					 <td>
+					  		<span>{{member.boardName}}</span>
+					 </td>
+					 <td ng-class="{'mark' : (logs[currentIndex].memberName != logs[currentIndex+1].memberName) && logs[currentIndex+1] != undefined }">
+					  		<span>{{member.memberName}}</span>
+					 </td>
+					 <td ng-class="{'mark' : (logs[currentIndex].memberOccupation != logs[currentIndex+1].memberOccupation) && logs[currentIndex+1] != undefined }"> <span>{{ member.memberOccupation }} </span> </td>
+					 <td>
+							<label>
+								<p ng-bind="getMemberOrganizationName(member.organizationId);" style="direction: ltr;" ng-class="{'mark' : (logs[currentIndex].organizationId != logs[currentIndex+1].organizationId) && logs[currentIndex+1] != undefined }"></p>
+							</label>
+					</td>
+					<td>
+							<label>
+								<p ng-bind="getMemberRoleName(member.roleId);" style="direction: ltr;" ng-class="{'mark' : (logs[currentIndex].roleId != logs[currentIndex+1].roleId) && logs[currentIndex+1] != undefined }"></p>
+							</label>
+					</td>
+					<td>
+						<label>
+								<p ng-bind="member.memberStartDate | date:'dd-MM-yyyy'" ng-class="{'mark' : (logs[currentIndex].memberStartDate != logs[currentIndex+1].memberStartDate) && logs[currentIndex+1] != undefined }"></p>
+						</label>
+					</td>
+					<td>
+						<label>
+								<p ng-bind="member.memberEndDate | date:'dd-MM-yyyy'" ng-class="{'mark' : (logs[currentIndex].memberEndDate != logs[currentIndex+1].memberEndDate) && logs[currentIndex+1] != undefined }"></p>
+						</label>
+					</td>
+					<td>
+						<label>
+								<p ng-bind="getMemberStatusName(member.memberStatusId);" ng-class="{'mark' : (logs[currentIndex].memberStatusId != logs[currentIndex+1].memberStatusId) && logs[currentIndex+1] != undefined }"></p>
+						</label>
+					</td>
+					<td>
+					  		<span ng-class="{'mark' : (logs[currentIndex].loggedInUser != logs[currentIndex+1].loggedInUser) && logs[currentIndex+1] != undefined }">{{member.loggedInUser}}</span>
+					 </td>
+					<td>
+							<label>
+								<p ng-bind="member.createdOn | date:'dd-MM-yyyy HH:mm:ss'" style="direction: ltr;"></p>
+							</label>
+					</td>
+					<td>
+						<span ng-class="{'mark' : (logs[currentIndex].action != logs[currentIndex+1].action) && logs[currentIndex+1] != undefined }">{{member.action}}</span>
+					</td>
+				</tr>
+					
+				<tfoot>
+					<tr>
+						<td colspan="12" class="text-center">
+							<div st-pagination="" st-items-by-page="5"
+								st-displayed-pages="1000000"></div>
+						</td>
+					</tr>
+				</tfoot>
+
+			</table>
+		</div>
+		
+		
+	</div>
+</div>
+ 
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" 
+          data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+</div>

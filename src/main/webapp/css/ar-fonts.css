@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'FrutigerBold';
+    src: url('../fonts/FrutigerBold.eot');
+    src: url('../fonts/FrutigerBold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/FrutigerBold.woff') format('woff'),
+         url('../fonts/FrutigerBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GE_SS_Two_Medium';
+    src: url('../fonts/GE_SS_Two_Medium.eot');
+    src: url('../fonts/GE_SS_Two_Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/GE_SS_Two_Medium.woff') format('woff'),
+         url('../fonts/GE_SS_Two_Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

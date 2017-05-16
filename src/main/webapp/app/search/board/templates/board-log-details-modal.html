@@ -1,0 +1,88 @@
+<style>
+.modal-dialog {
+  width: 65%;
+}
+
+</style>
+<div class="modal-header" style="padding: 0px !important; direction: rtl !important;">
+  <h3 style="margin-right: 5% !important;">{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body" style="font-size: 15px; padding: 15px !important;direction: rtl !important;"">
+ 
+ 
+  <div class="row">
+	<div class="no-padding">
+		
+		<div>
+			<table st-table="data" st-safe-src="logs"
+				class="table table-striped table-bordered table-hover" id="boardLog">
+				<thead>
+					<tr>
+						<th st-sort="boardName" width="20%">{{ 'BOARD_NAME_LABEL' | constant}}</th>
+						<th st-sort="loggedInUser" width="20%">{{ 'CREATED_BY_LABEL' | constant}}</th>
+						<th st-sort="createdOn" width="15%">{{ 'CREATED_ON_LABEL' | constant}}</th>
+						<th st-sort="decrees" width="20%">{{ 'VIEW_DECREES_LABLE' | constant}}</th>
+						<th st-sort="actionOperation" width="11%"> {{ 'ACTION_LABLE' | constant}} </th>
+						<th st-sort="notificationBefore" width="7%"> {{ 'NOTIFICATION_BEFORE_LABEL' | constant}} </th>
+						<th st-sort="notificationRepeat" width="7%">{{ 'NOTIFICATION_REPEAT_LABEL' | constant}}</th>
+					</tr>
+
+					<tr>
+						<th colspan="7"><input st-search placeholder="بحث"
+							class="input-sm form-control" type="search" /></th>
+					</tr>
+				</thead>
+
+
+
+				<tr ng-repeat="board in data " st-index-get st-correct-index="currentIndex" st-list="{{logs}}" st-row="{{board}}">
+					  
+					 <td>
+					  		<span>{{board.boardName}}</span>
+					 </td>
+					 <td>
+					  		<span ng-class="{'mark' : (data[$index].loggedInUser != data[$index+1].loggedInUser) && data[$index+1] != undefined }">{{board.loggedInUser}}</span>
+					 </td>
+					<td>
+							<label>
+								<p ng-bind="board.createdOn | date:'dd-MM-yyyy HH:mm:ss'" style="direction: ltr;"></p>
+							</label>
+					</td>
+					<td>
+							<div ng-repeat=" decree in  board.decrees">
+								<decree-low-concat decree-number="decree.decreeNumber" decree-year="decree.decreeYear" decree-type="getDecreeTypeName(decree.decreeTypeId);"></decree-low-concat>
+							</div>
+					</td>
+					<td>
+						<span ng-class="{'mark' : (data[$index].action != data[$index+1].action) && data[$index+1] != undefined }">{{board.action}}</span>
+					</td>
+					<td>
+						<span ng-class="{'mark' : (data[$index].notificationBefore != data[$index+1].notificationBefore) && data[$index+1] != undefined }">{{board.notificationBefore}}</span>
+					</td>
+					
+					<td>
+						<span ng-class="{'mark' : (data[$index].notificationRepeat != data[$index+1].notificationRepeat) && data[$index+1] != undefined }">{{board.notificationRepeat}}</span>
+					</td>
+				</tr>
+					
+				<tfoot>
+					<tr>
+						<td colspan="12" class="text-center">
+							<div st-pagination="" st-items-by-page="7"
+								st-displayed-pages="1000000"></div>
+						</td>
+					</tr>
+				</tfoot>
+
+			</table>
+		</div>
+		
+		
+	</div>
+</div>
+ 
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" 
+          data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+</div>

@@ -1,0 +1,84 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Spring Quartz <bean name="notificationJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass" value="bh.gov.cio.gbs.notification.NotificationJob" 
+		/> <property name="jobDataAsMap"> <map> <entry key="notificationTask" value-ref="notificationTask" 
+		/> </map> </property> </bean> -->
+	<!-- specifing class and method that is going to be called on a specified 
+		time basis <bean id="notificationJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
+		<property name="targetObject" ref="notificationTask" /> <property name="targetMethod" 
+		value="notifyTask" /> </bean> -->
+
+	<bean id="notificationJob"
+		class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="bh.gov.cio.gbs.notification.NotificationJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="externalBoardService" value-ref="boardService"/>
+			</map>
+		</property>
+	</bean>
+
+	<!-- Cron Trigger, run every 5 seconds 0/5 * * * * ?   & every 6 pm 0 0 18 * * ? -->
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="notificationJob" />
+		<property name="cronExpression" value="0 0 18 * * ?" />
+<!-- 		<property name="cronExpression" value=" 15 30 10 1/1 * ? * "  /> -->
+
+
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="notificationJob" />
+			</list>
+		</property>
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- ___________________________________________________________MEMBER JOB__________________________________________________________________________________________________________ -->
+	
+	<bean id="memberNotificationJob"
+		class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="bh.gov.cio.gbs.notification.MemberNotificationJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="externalBoardService" value-ref="boardService"/>
+			</map>
+		</property>
+	</bean>
+	
+		<!-- Cron Trigger, run every 5 seconds -->
+	<bean id="memberCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+		<property name="jobDetail" ref="memberNotificationJob" />
+<!-- 		<property name="cronExpression" value="0 0 18 * * ?" /> -->
+		<property name="cronExpression" value="0 0 19 * * ?"  />
+
+
+	</bean>
+	
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="memberNotificationJob" />
+			</list>
+		</property>
+		<property name="triggers">
+			<list>
+				<ref bean="memberCronTrigger" />
+			</list>
+		</property>
+	</bean>
+	
+
+</beans>

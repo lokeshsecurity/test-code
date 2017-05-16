@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- * ****************************************************************** 
+	* Copyrighted Material, Confidential, unauthorized review or * reproduction 
+	is prohibited, ad so can and will result in * legal action against violators 
+	* ****************************************************************** * *** 
+	Copyright Holders ******************************************* * ****************************************************************** 
+	* Government of Kingdom Of Bahrain (KOB) * Central Informatics Organization 
+	(CIO) * Governerate Data Network (GDN) * National Data Services Project (NDS) 
+	* The General Directorate of Information Technology (GDIT) * Application 
+	Transformation Project (ATP) * Civil Registration Service (CRS) * ________________________________________________________________________________ 
+	* Change Log * ________________________________________________________________________________ 
+	* VER USER Timestamp Activity * ________________________________________________________________________________ 
+	* * -->
+	<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+            http://www.springframework.org/schema/jee
+            http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+            http://www.springframework.org/schema/lang
+            http://www.springframework.org/schema/lang/spring-lang-2.5.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+            http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/util/spring-util-2.5.xsd
+">
+
+
+
+
+	<bean name="modelManager"
+		class="bh.gov.cio.gbs.service.impl.SupplementaryModelManagerJDBCImpl">
+		<property name="gbsDao" ref="gbsDao" />
+		<property name="lookupDao" ref="lookupDao" />
+		<property name="notificationDao" ref="notificationDao" />
+		
+	</bean>
+	
+	<bean name="boardService"
+		class="bh.gov.cio.gbs.service.impl.BoardManagerImpl">
+		<constructor-arg ref="modelManager" />
+		<constructor-arg ref="mailSender" />
+		<constructor-arg ref="velocityEngine"/>
+	</bean>
+	
+	
+   <!-- this is mail configuration  all you need to put the data in mail properties file -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${mail.host}" />
+		<property name="port" value="${mail.port}" />
+		<property name="username" value="${mail.username}" />
+		<property name="javaMailProperties">
+		   <props>
+       	      <prop key="mail.smtp.starttls.enable">true</prop>
+       	      <prop key="mail.smtp.ssl.trust">${mail.host}</prop>
+	       </props>
+		</property>
+	</bean>
+	
+	<bean id="ApplicationHistoryListener" class="bh.gov.cio.gbs.systemevent.ApplicationHistoryListener">
+		<property name="externalModel" ref="modelManager" />
+	</bean>
+	
+	<bean id="SessionTimeoutLoggerService" class="bh.gov.cio.gbs.logging.SessionTimeoutLogging">
+		<property name="boardManager" ref="boardService"></property>
+	</bean>
+	
+	<!-- velocity engine used with mail to can add dynamic content in mail file -->
+	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+      <property name="velocityProperties">
+         <value>
+            resource.loader=class
+            class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+         </value>
+      </property>
+   </bean>
+
+</beans>

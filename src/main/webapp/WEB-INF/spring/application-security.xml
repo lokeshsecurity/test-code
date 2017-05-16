@@ -1,0 +1,55 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+	
+	
+	 <global-method-security jsr250-annotations="enabled"/>
+    
+	<http auto-config="true" use-expressions="true" authentication-manager-ref="authenticationManager"> 
+	
+	     <intercept-url pattern="/gbs*" access="permitAll" />
+ 		 <intercept-url pattern="/login.html" access="permitAll" />
+	 	 <intercept-url pattern="/index*" access="hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN')" />
+	
+	
+	     <!-- form login -->
+     	<form-login login-page="/login.html"  login-processing-url="/j_spring_security_check"
+         			authentication-failure-url="/login.html?errorMessage=Invalid username or password" 
+         			default-target-url="/api/login/getLoggedUser"
+         		    always-use-default-target="true"/> 
+			
+		<!-- logout -->
+     	<logout logout-url="/api/login/logout" />  
+	</http>
+	
+	<authentication-manager id="authenticationManager">
+		<authentication-provider>
+		
+				<!-- Note :   use this authentication provider when you create your db with your data source-->			
+				<password-encoder ref="passwordEncoder"/>
+				<jdbc-user-service data-source-ref="main-ds" 
+				users-by-username-query="SELECT USER_NAME, PASSWORD , CASE ENABLE WHEN 1 THEN 'true' ELSE 'false' END ENABLED
+										FROM GBS.USER WHERE LOWER(USER_NAME)=LOWER(?) AND (ENABLE = 1)"
+										 
+				authorities-by-username-query="SELECT u.USER_NAME, r.SYSTEM_ROLE_NAME FROM GBS.USER u, GBS.group g , GBS.SYSTEM_ROLE r , GBS.user_group ug , GBS.GROUP_SYSTEM_ROLE gr 
+												WHERE u.USER_ID = ug.USER_ID and g.group_id = ug.group_id and g.group_id = gr.group_id
+												and (u.ENABLE=1 or u.ENABLE is null) and r.SYSTEM_ROLE_ID = gr.SYSTEM_ROLE_ID and LOWER(u.USER_NAME)=LOWER(?)"/>
+										 
+			 	
+			 	
+			 <!-- Note :  Use this for initial startup and after create your db use the above for check your login 			 
+			 <user-service>
+				<user name="ahmed.ed@iga.gov.bh" password="123456789"  authorities="ROLE_USER,ROLE_ADMIN" />
+				<user name="dalal.na@iga.gov.bh" password="123456789"  authorities="ROLE_USER,ROLE_ADMIN" />
+				<user name="hany.reda@iga.gov.bh" password="123456789"  authorities="ROLE_USER,ROLE_ADMIN" />
+			</user-service> 
+			-->		
+		</authentication-provider>
+	</authentication-manager>
+	
+	
+</beans:beans>

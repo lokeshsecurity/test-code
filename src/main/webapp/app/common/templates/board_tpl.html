@@ -1,0 +1,150 @@
+
+
+
+<!-- START ROW -->
+
+<div class="row">
+
+	<!-- NEW COL START -->
+	<article class="col-sm-12 col-md-12 col-lg-12">
+
+		<!-- Widget ID (each widget will need unique ID)-->
+		<div class="jarviswidget personData" id="wid-id-35" data-widget-editbutton="false"
+			data-widget-custombutton="false" data-widget-deletebutton="false"
+			data-widget-fullscreenbutton="false">
+			<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+					
+					data-widget-colorbutton="false"	
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true" 
+					data-widget-sortable="false"
+					
+				-->
+			<header>
+				<span class="widget-icon "> <i class="fa fa-edit"></i>
+				</span>
+				<h2> {{ 'CREATE_BOARD_TITLE' | constant}} </h2>
+			</header>
+
+			<!-- widget div-->
+			<div>
+
+				<!-- widget edit box -->
+				<div class="jarviswidget-editbox">
+					<!-- This area used as dropdown edit box -->
+
+				</div>
+				<!-- end widget edit box -->
+
+				<!-- widget content -->
+				<div class="widget-body no-padding">
+
+					<form action="" id="board-form" class="smart-form"
+						novalidate="novalidate">
+						<div class="col-lg-12">
+							<div class="row">
+									<div class="col-md-6">
+											<section class="col-md-6">
+													<label class="input"> 
+														<cio-lookup
+															data-placeholder="{{ 'BOARD_SOURCE_OARGNIZATION_LABEL' | constant}} " 
+															data-lookup-list="lookupMap.SOURCE_ORGANIZATIONS"
+															data-ng-model="board.sourceOrganization" data-reset="resetSourceOrganization">
+														</cio-lookup>
+													</label>
+												</section>
+												<section class="col-md-5">
+													<label class="input"> {{ 'BOARD_SOURCE_OARGNIZATION_LABEL' | constant}} </label>
+												</section>
+										</div>
+										
+										<div class="col-md-6">
+											<section class="col-md-8">
+													<label class="input"> 
+													<input type="text" placeholder=" {{ 'BOARD_NAME_LABEL' | constant}} " 				
+														       data-ng-model="board.name" ng-blur="validateBoardNameExist();" maxlength="255">
+													</label>
+												</section>
+											<section class="col-md-4">
+												<label class="input"> {{ 'BOARD_NAME_LABEL' | constant}} </label>
+											</section>
+										</div>
+							
+							</div>
+						
+							<div class="row">
+								<div class="col-md-6">
+											<section class="col-md-6">
+													<label class="input"> <i ng-click="open($event , 'openedBoardEndDate')" ng-disabled="disableBoardExpiry" ng-hide="disableBoardExpiry"
+														class="icon-append fa fa-calendar"></i> <input type="text"  ng-readonly="true"
+														class="form-control" datepicker-popup="yyyy-MM-dd"
+														ng-model="board.endDate" is-open="elements.openedBoardEndDate"
+														datepicker-options="dateOptions"	
+														ng-required="true"
+														close-text="Close" gbs-date/>
+													</label>
+											</section>
+												<section class="col-md-5">
+													<label class="input"> {{ 'END_DATE_DECREE_LABLE' | constant}}  </label>
+												</section>
+										</div>
+										
+										<div class="col-md-6">
+											<section class="col-md-8">
+													<label class="input"> <i ng-click="open($event , 'openedBoardStartDate')"
+														class="icon-append fa fa-calendar"></i> <input type="text" ng-readonly="true"
+														class="form-control" datepicker-popup="yyyy-MM-dd"
+														ng-model="board.startDate" is-open="elements.openedBoardStartDate"
+														datepicker-options="dateOptions"
+														ng-required="true"
+														close-text="Close" gbs-date/>
+													</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input"> {{ 'START_DATE_DECREE_LABLE' | constant}} </label>
+											</section>
+										</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-10">
+									<label class="input"> 
+										<ui-select multiple tagging ng-model="board.destinationOrganization" limit="2">
+														    <ui-select-match placeholder="{{'BOARD_DESTINATION_ORGANIZATION_LABEL' | constant}}">{{$item.name}}</ui-select-match>
+														    <ui-select-choices repeat="destOrg in lookupMap.DESTINATION_ORGANIZATIONS | filter:$select.search">
+														      {{destOrg.name}}
+														    </ui-select-choices>
+										 </ui-select>
+									</label>
+								</div>
+								<div class="col-md-2">
+									<section class="col-md-12">
+										<label class="input"> {{'BOARD_DESTINATION_ORGANIZATION_LABEL' | constant}} </label>
+									</section>
+								</div>
+							</div>
+							
+						 </div>
+					</form>
+
+				</div>
+				<!-- end widget content -->
+
+			</div>
+			<!-- end widget div -->
+
+		</div>
+		<!-- end widget -->
+
+
+	</article>
+	<!-- END COL -->
+</div>
+
+<!-- END ROW -->
+

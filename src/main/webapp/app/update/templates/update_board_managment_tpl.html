@@ -1,0 +1,82 @@
+<div class="row">
+		<section  id="widget-grid">
+				<div  class="col-sm-12 col-md-12 col-lg-11 centerText">
+						<header>
+							<h2> {{ 'UPDATE_BOARD_TITLE' | constant}}  </h2>
+						</header>
+						
+						<div class="row">
+						   <div class="btn-group w90" ng-disabled="true">
+					   			<label class="btn btn-default w25 fr" ng-model="board.boardType" btn-radio="type" ng-repeat="type in lookupMap.BOARD_TYPES | orderBy:id track by $index " 
+					   							data-ng-change="disableOrEnableBoardExpiry(board.boardType);" >
+					           			{{type.name}}
+					       		</label>
+						   </div>
+						</div>
+				</div>
+		</section>
+	</div>
+	<br/>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<section class="col-md-7" ng-show="showSearchBoard">
+				<label class="input">
+					<ui-select ng-model="x.parent" style="width:350px;" theme="select2" ng-change="getSelectedParentBoard(x.parent);" reset-search-input="true" ng-disabled="disableParentBoard">
+						    <ui-select-match allow-clear="true" placeholder="{{ 'PARENT_BOARD_LABLE' | constant}}">  {{$select.selected.boardName}} <i class="clear glyphicon glyphicon-remove" ng-show="x.parent!=null && x.parent!=''"></i> </ui-select-match>
+						    <ui-select-choices repeat="board in boards | filter:$select.search"  refresh="searchBoard($select.search)" refresh-delay="0">
+						       <div ng-bind-html="board.boardName | highlight: $select.search"></div>
+						    </ui-select-choices>
+		 			</ui-select>
+		 				
+				</label>
+			</section>
+			<section class="col-md-4" ng-show="showSearchBoard">
+				<label class="input"> {{ 'PARENT_BOARD_NAME_LABEL' | constant}}</label>
+			</section>
+		</div>
+		<div class="col-md-6">
+			<section class="col-md-7">
+					<label class="input"> 
+						<cio-lookup
+							data-placeholder="{{ 'BOARD_CREATION_TYPE_LABEL' | constant}} " 
+							data-lookup-list="lookupMap.BOARD_CREATION_TYPES"
+							data-ng-model="creationType" data-style="width:350px;" data-change-callback-fn="showBoardsRelated(creationType);" data-reset="resetCreationType" data-disabled="disableCreationType">
+						</cio-lookup>
+					</label>
+				</section>
+				<section class="col-md-4">
+					
+			</section>
+		</div>
+	</div>
+	
+	
+	<div class="row">
+		<section  id="widget-grid">
+		
+			<div  class="col-sm-12 col-md-12 col-lg-12">
+				<div
+					data-ng-include="'./app/common/templates/edit_board_tpl.html'"></div>
+			</div>
+			<div class="col-sm-12 col-md-12 col-lg-12">
+				<div
+					data-ng-include="'./app/common/templates/edit_member_tpl.html'"></div>
+			</div>
+			<div class="col-sm-12 col-md-12 col-lg-12">
+				<div
+					data-ng-include="'./app/common/templates/edit_decree_tpl.html'"></div>
+			</div>
+			<div class="col-sm-12 col-md-12 col-lg-12">
+				<div
+					data-ng-include="'./app/common/templates/edit_notification_tpl.html'"></div>
+			</div>
+			
+			<div class="row">
+					<div style="text-align: center;">
+							<button id="updateBoard" type="button" class="btn btn-primary btn-lg" ng-click="updateBoard();"> {{ 'UPDATE_BOARD_TITLE' | constant}} </button>
+					</div>
+			</div>
+			
+		</section>
+	</div>

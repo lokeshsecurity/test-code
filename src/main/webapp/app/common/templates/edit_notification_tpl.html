@@ -1,0 +1,90 @@
+
+
+
+<!-- START ROW -->
+
+<div class="row">
+
+	<!-- NEW COL START -->
+	<article class="col-sm-12 col-md-12 col-lg-12">
+
+		<!-- Widget ID (each widget will need unique ID)-->
+		<div class="jarviswidget personData" id="wid-id-39"
+			data-widget-editbutton="false" data-widget-custombutton="false"
+			data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
+			<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+					
+					data-widget-colorbutton="false"	
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true" 
+					data-widget-sortable="false"
+					
+				-->
+			<header>
+				<span class="widget-icon "> <i class="fa fa-edit"></i>
+				</span>
+				<h2>{{'NOTIFICATIONS_TITLE' | constant }}</h2>
+			</header>
+
+			<!-- widget div-->
+			<div>
+
+				<!-- widget edit box -->
+				<div class="jarviswidget-editbox">
+					<!-- This area used as dropdown edit box -->
+
+				</div>
+				<!-- end widget edit box -->
+
+				<!-- widget content -->
+				<div class="widget-body no-padding">
+					<form action="" id="notificationForm" class="smart-form"
+						novalidate="novalidate">
+						<div class="col-lg-12">
+							<div class="row">
+								<div class="col-md-9 fr">
+									<section class="col-md-3" ng-show="showNotificationRepeatSelect">
+										<cio-lookup data-placeholder="اختر"
+											data-lookup-list="notificationRepeatList"
+											data-ng-model="board.notificationRepaet" data-reset="resetNotificationRepeat"> </cio-lookup>
+									</section>
+									<section class="col-md-2" ng-show="showNotificationRepeatSelect">
+										<label class="input"> {{'NOTIFICATION_REPEAT_LABEL' |
+											constant}} </label>
+									</section>
+									<section class="col-md-2"></section>
+									<section class="col-md-3">
+										<cio-lookup data-placeholder="اختر"
+											data-lookup-list="lookupMap.NOTIFICATION_PERIODS"
+											data-ng-model="board.notificationBefore" data-change-callback-fn="showNotificationRepeat(notification);" data-reset="resetNotificationBefore" data-disabled="disableBoardExpiry"> </cio-lookup>
+									</section>
+									<section class="col-md-2">
+										<label class="input"> {{'NOTIFICATION_BEFORE_LABEL' |
+											constant}} </label>
+									</section>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- end widget content -->
+
+			</div>
+			<!-- end widget div -->
+
+		</div>
+		<!-- end widget -->
+
+
+	</article>
+	<!-- END COL -->
+
+</div>
+
+<!-- END ROW -->
+

@@ -1,0 +1,49 @@
+<div class="modal-header" style="padding: 0px !important; direction: rtl !important;">
+  <h3 style="margin-right: 5% !important;">{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body" style="font-size: 15px; padding: 15px !important;direction: rtl !important;"">
+ 
+ <div class="row">
+
+	<div class="widget-body no-padding">
+		<form action="" id="memberNotificationForm" class="smart-form"
+			novalidate="novalidate">
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-md-9 fr">
+						<section class="col-md-3" ng-show="showMemberNotificationRepeatSelect">
+							<cio-lookup data-placeholder="اختر"
+								data-lookup-list="memberNotificationRepeatList"
+								data-ng-model="member.notificationRepeat" data-reset="resetMemberNotificationRepeat"> </cio-lookup>
+						</section>
+						<section class="col-md-2" ng-show="showMemberNotificationRepeatSelect">
+							<label class="input"> {{'NOTIFICATION_REPEAT_LABEL' |
+								constant}} </label>
+						</section>
+						<section class="col-md-2"></section>
+						<section class="col-md-3">
+							<cio-lookup data-placeholder="اختر"
+								data-lookup-list="lookupMap.NOTIFICATION_PERIODS"
+								data-ng-model="member.notificationBefore" data-change-callback-fn="getNotificationMemberRepeat(notification);" data-reset="resetMemberNotificationBefore"> </cio-lookup>
+						</section>
+						<section class="col-md-2">
+							<label class="input"> {{'NOTIFICATION_BEFORE_LABEL' |
+								constant}} </label>
+						</section>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- END ROW -->
+ 
+ 
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn" 
+          data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+  <button class="btn btn-primary" 
+          data-ng-click="modalOptions.ok();">{{modalOptions.actionButtonText}}</button>
+</div>

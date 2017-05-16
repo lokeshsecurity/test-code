@@ -1,0 +1,79 @@
+<div class="row">
+	<div class="col-md-12">
+		<div>
+			<table st-table="displayedCollection" st-safe-src="list"
+				class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+						<th st-sort="cprNumber" width="5%">{{ 'CPR_NUMBER_LABLE' | constant}}</th>
+						<th st-sort="name" width="15%">{{ 'MEMBER_NAME_LABLE' | constant}}</th>
+						<th st-sort="occupation" width="15%">{{ 'MEMBER_OCCUPATION_LABLE' | constant}}</th>
+						<th st-sort="organization.name" width="10%"> {{ 'MEMBER_ORGANIZATION_LABEL' | constant}} </th>
+						<th st-sort="role.name" width="10%"> {{ 'MEMBER_ROLE_LABEL' |constant}} </th>
+						<th st-sort="organizaionOnBehalf.name" width="10%">{{ 'MEMEBR_ONBEHALF_OF_LABLE' | constant}}</th>
+						<th st-sort="startDate" width="6%">{{ 'MEMBER_START_DATE_LABEL' | constant}}</th>
+						<th width="10%" st-sort="endDate">{{ 'MEMBER_END_DATE_LABEL' | constant}}</th>
+						<th  width="5%">{{ 'NOTIFICATION_BEFORE_LABEL' | constant}}</th>
+						<th  width="5%">{{ 'NOTIFICATION_REPEAT_LABEL' | constant}}</th>
+						<th width="9%" ng-show="showRemoveColumn"> {{ 'UPDATE_DELETE_LABEL' | constant}} </th>
+					</tr>
+
+					<tr>
+						<th colspan="11"><input st-search placeholder="{{ 'SEARCH_LABEL' | constant}}"
+							class="input-sm form-control" type="search" /></th>
+					</tr>
+				</thead>
+
+
+
+				<tr ng-repeat="member in displayedCollection track by $index">
+					<td>{{ member.cprNumber}}</td>
+					<td>{{ member.name }}</td>
+					<td>{{ member.occupation }}</td>
+					<td>{{ member.organization.name}}</td>
+					<td>{{ member.role.name}}</td>
+					<td>{{ member.organizaionOnBehalf.name}}</td>
+					<td><label>
+							<p ng-bind="member.startDate | date:'dd-MM-yyyy'"></p>
+					</label></td>
+					<td><label>
+							<p ng-bind="member.endDate | date:'dd-MM-yyyy'"></p>
+					</label></td>
+					<td>{{ member.notificationBefore.name}}</td>
+					<td>{{ member.notificationRepeat.name}}</td>
+					
+					
+<!-- 					<td> -->
+<!-- 						<button data-ng-click="getNotification(member);" class=" btn btn-warning btn-sm" type="button" ng-show="(member.cprNumber != null && member.cprNumber != '' && member.cprNumber != undefined)"> -->
+<!-- 							<i class="glyphicon glyphicon-bell"></i> -->
+<!-- 						</button> -->
+<!-- 					</td> -->
+					<td ng-show="showRemoveColumn">
+						<button class=" btn btn-primary btn-sm" type="button"
+							data-ng-click="edit(member)" data-ng-show="!checkRenewal(member);">
+							<i class="glyphicon glyphicon-edit"></i>
+						</button>
+						<button class=" btn errorBtn btn-sm" type="button"
+								data-ng-click="remove(member)" data-ng-show="(member.memberId == undefined  || member.memberId == null)">
+								<i class="glyphicon glyphicon-remove"></i>
+							</button>
+						<button class=" btn btn-success btn-sm" type="button"
+								data-ng-click="renew(member)" data-ng-show="checkRenewal(member);">
+								<i class="glyphicon glyphicon-refresh"></i>
+							</button>	
+					</td>
+				</tr>
+
+				<tfoot>
+					<tr>
+						<td colspan="12" class="text-center">
+							<div st-pagination="" st-items-by-page="5"
+								st-displayed-pages="1000000"></div>
+						</td>
+					</tr>
+				</tfoot>
+
+			</table>
+		</div>
+	</div>
+</div>

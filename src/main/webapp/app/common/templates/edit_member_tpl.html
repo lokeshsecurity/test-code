@@ -1,0 +1,244 @@
+
+
+
+<!-- START ROW -->
+
+<div class="row">
+
+	<!-- NEW COL START -->
+	<article class="col-sm-12 col-md-12 col-lg-12">
+
+		<!-- Widget ID (each widget will need unique ID)-->
+		<div class="jarviswidget personData" id="wid-id-38" data-widget-editbutton="false"
+			data-widget-custombutton="false" data-widget-deletebutton="false"
+			data-widget-fullscreenbutton="false">
+			<!-- widget options:
+					usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+					
+					data-widget-colorbutton="false"	
+					data-widget-editbutton="false"
+					data-widget-togglebutton="false"
+					data-widget-deletebutton="false"
+					data-widget-fullscreenbutton="false"
+					data-widget-custombutton="false"
+					data-widget-collapsed="true" 
+					data-widget-sortable="false"
+					
+				-->
+			<header>
+				<span class="widget-icon "> <i class="fa fa-edit"></i>
+				</span>
+				<h2> {{ 'MEMBER_TITLE' | constant}} </h2>
+			</header>
+
+			<!-- widget div-->
+			<div>
+
+				<!-- widget edit box -->
+				<div class="jarviswidget-editbox">
+					<!-- This area used as dropdown edit box -->
+
+				</div>
+				<!-- end widget edit box -->
+
+				<!-- widget content -->
+				<div class="widget-body no-padding">
+				<form action="" id="member-form" class="smart-form"
+						novalidate="novalidate">
+						<div class="col-lg-12">
+							<div class="row">
+										<div class="col-md-4">
+											<section class="col-md-7">
+												<label class="input"> <input
+													placeholder="{{ 'MEMBER_OCCUPATION_LABLE' | constant}}" data-ng-model="member.occupation" valid-character tooltip="{{member.occupation.$valid ? '' : ('NOT_ALLOWED_NUMBERS' | constant)}}"  
+														tooltip-trigger="focus" tooltip-placement="top" 
+														maxlength="255" ng-disabled="disableMemberOccupation"  ng-class="{'disabled': disableMemberOccupation}">
+												</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input"> {{ 'MEMBER_OCCUPATION_LABLE' | constant}} </label>
+											</section>
+										</div>
+										
+										<div class="col-md-4">
+											<section class="col-md-7">
+												<label class="input">
+												 <input
+													placeholder="{{ 'MEMBER_NAME_LABLE' | constant}} " data-ng-model="member.name" valid-character tooltip="{{member.name.$valid ? '' : ('NOT_ALLOWED_NUMBERS' | constant)}}"  tooltip-trigger="focus" tooltip-placement="top" 
+															maxlength="255" ng-disabled="disableMemberName" ng-class="{'disabled': disableMemberName}">
+												<!--  
+													<ui-select ng-model="member.name">
+														    <ui-select-match placeholder="{{ 'MEMBER_NAME_LABLE' | constant}}">  {{$select.selected.memberName}} </ui-select-match>
+														    <ui-select-choices repeat="member in members | filter:$select.search"  refresh="searchMember($select.search)" refresh-delay="0">
+														      {{member.memberName}}
+														    </ui-select-choices>
+										 			</ui-select>
+										 			-->
+												</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input"> {{ 'MEMBER_NAME_LABLE' | constant}} </label>
+											</section>
+											
+										</div>
+										
+										<div class="col-md-4">
+											<section class="col-md-7">
+												<label class="input"> <input
+													placeholder="{{ 'CPR_NUMBER_LABLE' | constant}} " data-ng-model="member.cprNumber" ng-blur="isValidCprLength(member.cprNumber);" maxlength="9" 
+													valid-number tooltip="{{member.cprNumber.$valid ? '' : ('CPR_NUMBER_9_DIGITS' | constant)}}"  tooltip-trigger="focus" tooltip-placement="top" ng-disabled="disableMemberCprNumber" ng-class="{'disabled': disableMemberCprNumber}">
+												</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input"> {{ 'CPR_NUMBER_LABLE' | constant}} </label>
+											</section>
+										</div>
+							</div>
+								
+								<div class="row">
+										<div class="col-md-4">
+											<section class="col-md-7">
+												<label class="input"> 
+													<cio-lookup
+															data-placeholder="{{ 'MEMEBR_ONBEHALF_OF_LABLE' | constant}}" 
+															data-lookup-list="lookupMap.DESTINATION_ORGANIZATIONS"
+															data-ng-model="member.organizaionOnBehalf"
+															data-style="width:100%;" data-reset="resetMemberOrganizationOnBehalf" data-disabled="disableOrganizationOBF">
+													</cio-lookup>
+												</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input"> {{ 'MEMEBR_ONBEHALF_OF_LABLE' | constant}} </label>
+											</section>
+										</div>
+										
+										<div class="col-md-4">
+											<section class="col-md-7">
+												<label class="input"> 
+													<cio-lookup
+															data-placeholder="{{ 'MEMBER_ROLE_LABEL' |constant}}" 
+															data-lookup-list="lookupMap.ROLES"
+															data-ng-model="member.role"
+															data-style="width:100%;" data-reset="resetMemberRole" data-disabled="disableRole">
+													</cio-lookup>
+												</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input">  {{ 'MEMBER_ROLE_LABEL' |constant}} </label>
+											</section>
+										</div>
+										
+										<div class="col-md-4">
+											<section class="col-md-7">
+												<label class="input"> 
+													<cio-lookup
+															data-placeholder="{{ 'MEMBER_ORGANIZATION_LABEL' | constant}}" 
+															data-lookup-list="lookupMap.DESTINATION_ORGANIZATIONS"
+															data-ng-model="member.organization"
+															data-style="width:100%;" data-reset="resetMemberOrganization" data-disabled="disableOrganization">
+													</cio-lookup>
+												</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input"> {{ 'MEMBER_ORGANIZATION_LABEL' | constant}}  </label>
+											</section>
+										</div>
+								</div>
+								
+								<div class="row">
+										<div class="col-md-4">
+											
+										</div>
+										
+										<div class="col-md-4">
+											<section class="col-md-8">
+													<label class="input mrgr-10Per"> <i ng-click="open($event , 'openedMemberEndDate')" ng-hide="disableEndDate"
+														class="icon-append fa fa-calendar"></i> <input type="text"   ng-class="{'disabled': disableEndDate}"
+														class="form-control" datepicker-popup="yyyy-MM-dd" ng-readonly="true"
+														ng-model="member.endDate" is-open="elements.openedMemberEndDate"
+														datepicker-options="dateOptions"
+														ng-required="true"
+														close-text="Close" gbs-date/>
+													</label>
+											</section>
+											<section class="col-md-3">
+												<label class="input"> {{ 'MEMBER_END_DATE_LABEL' | constant}} </label>
+											</section>
+										</div>
+										
+										<div class="col-md-4">
+											<section class="col-md-8">
+													<label class="input mrgr-10Per"> <i ng-click="open($event , 'openedMemberIssueDate')" ng-hide="disableStartDate"
+														class="icon-append fa fa-calendar"></i> <input type="text"   ng-class="{'disabled': disableStartDate}"
+														class="form-control" datepicker-popup="yyyy-MM-dd" ng-readonly="true"
+														ng-model="member.startDate" is-open="elements.openedMemberIssueDate"
+														datepicker-options="dateOptions"
+														ng-required="true"
+														close-text="Close" gbs-date/>
+													</label>
+											</section>
+											<section class="col-md-4">
+												<label class="input"> {{ 'MEMBER_START_DATE_LABEL' | constant}} </label>
+											</section>
+										</div>
+								</div>
+									
+								<div class="row">
+										
+										<div class="col-md-4">
+										</div>
+								
+											<div class="col-md-8 fr">											
+											<section class="col-md-3" ng-show="showMemberNotificationRepeatSelect">
+												<cio-lookup data-placeholder="اختر"
+													data-lookup-list="memberNotificationRepeatList"
+													data-ng-model="member.notificationRepeat" data-reset="resetMemberNotificationRepeat"> </cio-lookup>
+											</section>
+											<section class="col-md-2" ng-show="showMemberNotificationRepeatSelect">
+												<label class="input"> {{'NOTIFICATION_REPEAT_LABEL' |
+													constant}} </label>
+											</section>
+											<section class="col-md-2"></section>
+											<section class="col-md-3">
+												<cio-lookup data-placeholder="اختر"
+													data-lookup-list="lookupMap.NOTIFICATION_PERIODS"
+													data-ng-model="member.notificationBefore" data-change-callback-fn="getNotificationMemberRepeat(notification);" data-reset="resetMemberNotificationBefore" data-disabled="disableMemberNotification"> </cio-lookup>
+											</section>
+											<section class="col-md-2">
+												<label class="input"> {{'NOTIFICATION_BEFORE_LABEL' |
+													constant}} </label>
+											</section>
+										</div>
+								</div>
+								
+								<div class="row">
+									<div class="mr-r-45per" ng-show="addMemberButton">
+										<button id="addMember" type="button" class="btn btn-primary btn-md w30" ng-click="addMember();"> {{ 'ADD_BUTTON_LABEL' | constant}} </button>
+									</div>
+									<div class="mr-r-45per" ng-show="editMemberButton">
+										<button id="updateMemeber" type="button" class="btn btn-primary btn-md w30" ng-click="updateMember(memberIndex);"> {{ 'UPDATE_BUTTON_LABEL' | constant}} </button>
+									</div>
+									<div class="mr-r-45per" ng-show="renewMemberButton">
+										<button id="renewMemeber" type="button" class="btn btn-primary btn-md w30" ng-click="renewMemberSubmit(memberIndex);"> {{ 'RENEW_BUTTON_LABEL' | constant}} </button>
+									</div>
+								</div>	
+							<member-table list="memberList" show-remove-column="true" edit-callback-fn="editMember(index);" clear-callback-fn="clearMemberData();" renew-callback-fn="renewMember(index);"></member-table>
+						</div>
+					</form>
+				</div>
+				<!-- end widget content -->
+
+			</div>
+			<!-- end widget div -->
+
+		</div>
+		<!-- end widget -->
+
+
+	</article>
+	<!-- END COL -->
+
+</div>
+
+<!-- END ROW -->
+

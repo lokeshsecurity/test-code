@@ -1,0 +1,26 @@
+<div class="ajax-notifications custom-scroll arabic-font">
+	<ul class="notification-body">
+		<li ng-repeat="notification in notifications">
+		<span ng-if="notification.notificationType == 'BOARD'"> <a
+				href="javascript:void(0);" class="msg"> <img
+					src="img/government.png"
+					class="air air-top-right margin-top-5" width="40" height="40" />
+					<span class="from" style="margin-right: 55px;">{{notification.boardName}} <i class="icon-paperclip"></i></span>
+					<time style="font-size: 14px; margin-top: 6%;">{{ 'END_DATE_DECREE_LABLE' | constant }} {{notification.boardExpiryDate | date:'yyyy-MM-dd'}}</time>
+					<span class="subject" style="margin-right: 55px;">{{notification.boardTypeName}}</span>
+					<span class="msg-body" style="margin-right: 55px;">{{notification.sourceOrganizationName}}</span>
+			</a>
+		</span>
+		<span ng-if="notification.notificationType == 'MEMBER'"> <a
+				href="javascript:void(0);" class="msg"> <img
+					src="img/user.png"
+					class="air air-top-right margin-top-5" width="40" height="40" />
+					<span class="from" style="margin-right: 55px;">{{notification.memberName}} <i class="icon-paperclip"></i></span>
+					<time style="font-size: 14px; margin-top: 6%;">{{ 'END_DATE_DECREE_LABLE' | constant }} {{notification.memberEndDate | date:'yyyy-MM-dd'}}</time>
+					<span class="subject" style="margin-right: 55px;">{{notification.memberRole}}</span>
+					<span class="msg-body" style="margin-right: 55px;">{{notification.boardName}}</span>
+			</a>
+		</span>
+		</li>
+	</ul>
+</div>

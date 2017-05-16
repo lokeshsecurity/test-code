@@ -1,0 +1,32 @@
+<!-- User info -->
+			<div class="login-info">
+				<span> <!-- User image size is adjusted inside CSS, it should stay as is --> 
+					<img src="./img/user.png" alt="me" class="online" style=" margin-right: 0px;"/> 
+					<a href="javascript:void(0);" id="show-shortcut">
+						<span data-localize="">
+							{{loggedInUser}}
+						</span>
+						<!--  <i class="fa fa-angle-down"></i>-->
+					</a> 
+				</span>
+			</div>
+			<!-- end user info -->
+
+			<!-- NAVIGATION : This navigation is also responsive
+
+			To make this navigation dynamic please make sure to link the node
+			(the reference to the nav > ul) after page load. Or the navigation
+			will not initialize.
+			-->
+      
+		<navigation class="arabic-font">
+			<!--   <nav:item ui-sref="home" data-icon="fa fa-sm fa-fw fa-list"   title="القائمة الرئيسية "  ng-show="isUserInRole('ROLE_USER');"></nav:item> -->
+			 <nav:item ui-sref="search" data-icon="fa fa-sm fa-fw fa-search"   title="{{ 'SEARCH_BOARD_TITLE' | constant}}"  ng-show="isUserInRole('ROLE_USER');"></nav:item> 
+			 <nav:item ui-sref="board" data-icon="fa fa-sm fa-fw fa-list"   title="{{ 'CREATE_BOARD_TITLE' | constant}}"  ng-show="isUserInRole('ROLE_USER');"></nav:item> 
+			 <nav:item ui-sref="membersearch" data-icon="fa fa-sm fa-fw fa fa-users"   title="{{ 'SEARCH_MEMBER_TITLE' | constant}}"  ng-show="isUserInRole('ROLE_USER');"></nav:item> 
+<!-- 			 <nav:item ui-sref="lookup" data-icon="fa fa-sm fa-fw fa-search"   title="ادارة نماذج البحث"></nav:item>  -->
+			 
+<!-- 			<nav:item href="swagger/index.html" data-icon="fa fa-sm fa-fw fa-strikethrough"   title="swagger"></nav:item> -->
+		
+			</navigation>
+			<span class="minifyme" data-action="minifyMenu"> <i class="fa fa-arrow-circle-left hit"></i> </span>

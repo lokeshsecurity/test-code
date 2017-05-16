@@ -1,0 +1,70 @@
+<div>
+    <div class="row">
+		
+		<ul class="nav nav-tabs pull-right arabic-font">
+				<li id="Tab5" cio-authorize="ROLE_ADMIN" ng-class=" {active : isActiveTab('/admin')}" >
+					<a id="t5" ui-sref=".admin" data-toggle="tab">إدارة النظام</a>
+				</li>	             
+				<li id="Tab4" ng-class=" {active : isActiveTab('/reports')}">
+					<a id="t4"  ui-sref=".report-list"  data-toggle="tab">التقارير</a>
+				</li>
+					<li id="Tab3" ng-class=" {active : isActiveTab('/waitingList')}">
+					<a  id="t3"  ui-sref=".waiting-list"        data-toggle="tab">قائمة الإنتظار</a>
+				</li>	
+				<li id="Tab2" ng-class=" {active : isActiveTab('/requests')}">
+					<a id="t2"  ui-sref=".accommodation-list"  data-toggle="tab"> البحث</a>
+				</li>				
+				<li id="Tab1" ng-class=" {active : isActiveTab('/myTasks')}">
+					<a  id="t1" ui-sref=".task-list"  style="background-color: #E0E6EA"  data-toggle="tab">تسوية الطلبات</a>
+				</li>
+		</ul>	 
+   </div>
+
+   
+   <div class="row tab-content" ui-view></div>
+   
+</div>
+
+<script>
+	$("#Tab1").click(function() {
+		$('#t1').css("background-color","#E0E6EA");
+		$('#t2').css("background-color","");
+		$('#t3').css("background-color","");
+		$('#t4').css("background-color","");
+		$('#t5').css("background-color","");
+	});
+	
+	$("#Tab2").click(function() {
+		
+		$('#t2').css("background-color","#E0E6EA");
+		$('#t1').css("background-color","");
+		$('#t3').css("background-color","");
+		$('#t4').css("background-color","");
+		$('#t5').css("background-color","");
+	});
+	
+	$("#Tab3").click(function() {
+		$('#t4').css("background-color","");
+		$('#t3').css("background-color","#E0E6EA");
+		$('#t1').css("background-color","");
+		$('#t2').css("background-color","");
+		$('#t5').css("background-color","");
+		
+	});
+	
+	$("#Tab4").click(function() {
+		$('#t4').css("background-color","#E0E6EA");
+		$('#t1').css("background-color","");
+		$('#t2').css("background-color","");
+		$('#t3').css("background-color","");
+		$('#t5').css("background-color","");
+	})
+	
+		$("#Tab5").click(function() {
+		$('#t4').css("background-color","");
+		$('#t1').css("background-color","");
+		$('#t2').css("background-color","");
+		$('#t3').css("background-color","");
+		$('#t5').css("background-color","#E0E6EA");
+	});
+</script>
